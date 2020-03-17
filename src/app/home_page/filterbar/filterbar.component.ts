@@ -16,12 +16,7 @@ export class FilterbarComponent implements OnInit {
   constructor(private placeService: PlaceService) {}
 
   ngOnInit(): void {
-    this.getPlacesList();
-  }
-
-  // TODO : check if all these getplaces() are necessary
-  getPlacesList(): Place[] {
-    return this.placeService.getPlaces();
+    /*this.getPlacesList(); TODO : check if necessary, but it seems not. Everything works fine without it */
   }
 
   getListOfTypes(): string[] {
@@ -41,5 +36,11 @@ export class FilterbarComponent implements OnInit {
     const distinctCounties = [...new Set(listOfCounties)];
     return distinctCounties;
   }
+
+  /*
+  // TODO : check if necessary, but it seems not. Everything works fine without it
+  getPlacesList(): Place[] {
+    return this.placeService.getPlaces();
+  }*/
 
 }

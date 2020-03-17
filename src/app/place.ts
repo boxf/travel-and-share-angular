@@ -3,4 +3,5 @@ export interface Place {
   county: string;
   type: string;
   name: string;
+  grade: number;
 }
