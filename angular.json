@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "travel-and-share-angular"
+    }
+  },
+  "defaultProject": "travel-and-share-angular",
+  "cli": {
+    "analytics": false
+  }
 }
