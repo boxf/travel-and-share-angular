@@ -10,6 +10,7 @@ import {Place} from '../../place';
 export class FilterbarComponent implements OnInit {
 
   places: Place[] = this.placeService.getPlaces();
+  counties: string[] = this.getListOfCounties();
   types: string[] = this.getListOfTypes();
 
   constructor(private placeService: PlaceService) {}
@@ -18,6 +19,7 @@ export class FilterbarComponent implements OnInit {
     this.getPlacesList();
   }
 
+  // TODO : check if all these getplaces() are necessary
   getPlacesList(): Place[] {
     return this.placeService.getPlaces();
   }
@@ -30,4 +32,14 @@ export class FilterbarComponent implements OnInit {
     const distinctTypes = [...new Set(listOfTypes)];
     return distinctTypes;
   }
+
+  getListOfCounties(): string[] {
+    const listOfCounties: string[] = [this.places[0].county];
+    for (const p of this.places) {
+      listOfCounties.push(p.county);
+    }
+    const distinctCounties = [...new Set(listOfCounties)];
+    return distinctCounties;
+  }
+
 }
