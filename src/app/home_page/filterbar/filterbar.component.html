@@ -1,1 +1,5 @@
-<p>filterbar works!</p>
+<label for="county">Choose a county:</label>
+
+<select id="county">
+  <option *ngFor="let county of countyList">{{county.name}}</option>
+</select>
