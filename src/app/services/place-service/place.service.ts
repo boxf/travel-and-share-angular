@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { PLACES } from '../../some-places';
+import {Place} from '../../place';
+
 
 @Injectable({
   providedIn: 'root'
@@ -6,4 +9,8 @@ import { Injectable } from '@angular/core';
 export class PlaceService {
 
   constructor() { }
+
+  getPlaces(): Place[] {
+    return PLACES;
+  }
 }
