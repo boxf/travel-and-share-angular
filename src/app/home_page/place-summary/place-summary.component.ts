@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Place} from '../../place';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-place-summary',
@@ -7,8 +6,6 @@ import {Place} from '../../place';
   styleUrls: ['./place-summary.component.css']
 })
 export class PlaceSummaryComponent implements OnInit {
-
-  @Input() place: Place;
 
   constructor() { }
 
