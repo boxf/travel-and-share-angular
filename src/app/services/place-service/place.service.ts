@@ -10,10 +10,15 @@ export class PlaceService {
 
   constructor() { }
 
-  getPlaces(): Place[] {
+  getPlacesByCounty(): Place[] {
     return PLACES;
   }
   getPlaceByFind(id) {
     return PLACES.find(x => x.id === 2);
+  }
+
+  getListOfCounties(): string[] {
+    const counties = ['Mountain', 'Beach', 'Diving', 'Climbing'];
+    return counties;
   }
 }
