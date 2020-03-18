@@ -34,7 +34,7 @@ import {FormsModule} from '@angular/forms';
     PhotoCarrousselComponent,
     ReviewComponent,
     PlaceDescriptionComponent,
-    ReviewsListComponent
+    ReviewsListComponent,
   ],
   imports: [
     BrowserModule,
