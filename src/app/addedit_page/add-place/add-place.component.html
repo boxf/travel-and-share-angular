@@ -1,1 +1,22 @@
+<div class="container-fluid">
 <h1> Add place </h1>
+  <form action="#" method="post" enctype="multipart/form-data">
+Name :
+<br>
+<input type="text" class="form-control"  [(ngModel)]="place.name">
+<br>
+Type :
+<br>
+<select [(ngModel)]="place.typeEnum" class="ml-1 mb-4">
+  <option *ngFor="let type of typeEnum" [ngValue]="type">{{type}}</option>
+</select>
+<br>
+Description :
+<br>
+<textarea rows="5" cols="33" placeholder="Description du lieu ..." [(ngModel)]="role" [maxlength]="maxChars" [ngModelOptions]="{standalone: true}" >
+It was a dark and stormy night...
+</textarea>
+    <p>Characters Remaining: {{role.length}}/{{maxChars}}</p>
+    <p> Image <input type="file" [(ngModel)]="place.pictureName"></p>
+  </form>
+</div>

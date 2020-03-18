@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Place} from '../../place';
+import {TypeEnum} from '../../TypeEnum';
 
 @Component({
   selector: 'app-add-place',
@@ -6,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-place.component.css']
 })
 export class AddPlaceComponent implements OnInit {
-
-  constructor() { }
+  place: Place;
+  maxChars = 500;
+  role = '';
+  private selectedTypeEnum: TypeEnum;
+  typeEnum: TypeEnum[];
+  constructor() {}
 
   ngOnInit(): void {
   }
