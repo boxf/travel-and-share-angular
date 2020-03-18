@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaceService } from '../../services/place-service/place.service';
-import {Place} from '../../place';
+import { Place } from '../../place';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-filterbar',
@@ -9,7 +10,7 @@ import {Place} from '../../place';
 })
 export class FilterbarComponent implements OnInit {
 
-  places: Place[] = this.placeService.getPlacesByCounty();
+  places: Place[];
   counties: string[] = this.placeService.getListOfCounties();
   types: string[] = this.getListOfTypes();
 
@@ -17,6 +18,11 @@ export class FilterbarComponent implements OnInit {
 
   ngOnInit(): void {
     /*this.getPlacesList(); TODO : check if necessary, but it seems not. Everything works fine without it */
+  }
+
+  getFilteredListByCounty() {
+    this.placeService.getPlacesByCounty().
+    subscribe((place: Place[]) => this.places = place);
   }
 
   getListOfTypes(): string[] {

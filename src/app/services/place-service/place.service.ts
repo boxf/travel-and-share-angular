@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { PLACES } from '../../some-places';
-import {Place} from '../../place';
+import { Place } from '../../place';
+import { HttpClient } from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 
 @Injectable({
@@ -8,10 +10,11 @@ import {Place} from '../../place';
 })
 export class PlaceService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getPlacesByCounty(): Place[] {
-    return PLACES;
+  getPlacesByCounty() {
+    const getPlaceByCountyUrl = 'http://localhost:8080/api/places';
+    return this.http.get<Place[]>(getPlaceByCountyUrl);
   }
 
   getListOfCounties(): string[] {
