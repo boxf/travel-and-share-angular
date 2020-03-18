@@ -9,8 +9,8 @@ import {Place} from '../../place';
 })
 export class FilterbarComponent implements OnInit {
 
-  places: Place[] = this.placeService.getPlaces();
-  counties: string[] = this.getListOfCounties();
+  places: Place[] = this.placeService.getPlacesByCounty();
+  counties: string[] = this.placeService.getListOfCounties();
   types: string[] = this.getListOfTypes();
 
   constructor(private placeService: PlaceService) {}

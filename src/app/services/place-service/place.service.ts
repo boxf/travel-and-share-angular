@@ -10,7 +10,12 @@ export class PlaceService {
 
   constructor() { }
 
-  getPlaces(): Place[] {
+  getPlacesByCounty(): Place[] {
     return PLACES;
+  }
+
+  getListOfCounties(): string[] {
+    const counties = ['Mountain', 'Beach', 'Diving', 'Climbing'];
+    return counties;
   }
 }

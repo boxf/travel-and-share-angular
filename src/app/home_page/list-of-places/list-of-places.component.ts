@@ -9,11 +9,16 @@ import { Place } from '../../place';
 })
 export class ListOfPlacesComponent implements OnInit {
 
-  places: Place[] = this.placeService.getPlaces();
+  places: Place[] = this.placeService.getPlacesByCounty();
+  placesSortedByType: Place[] = this.getPlacesSortedByType();
+  placesSortedByCounty: Place[] = this.placeService.getPlacesByCounty();
 
   constructor(private placeService: PlaceService) { }
 
   ngOnInit(): void {
   }
 
+  private getPlacesSortedByType() {
+    return [];
+  }
 }
