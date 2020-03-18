@@ -16,6 +16,7 @@ import { PhotoCarrousselComponent } from './detailplace_page/photo-carroussel/ph
 import { ReviewComponent } from './detailplace_page/review/review.component';
 import { PlaceDescriptionComponent } from './detailplace_page/place-description/place-description.component';
 import { ReviewsListComponent } from './detailplace_page/reviews-list/reviews-list.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ReviewsListComponent } from './detailplace_page/reviews-list/reviews-li
   ],
   imports: [
     BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
