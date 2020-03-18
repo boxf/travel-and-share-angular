@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Place} from '../../place';
+import {PlaceService} from '../../services/place-service/place.service';
 
 @Component({
   selector: 'app-place-summary',
@@ -7,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaceSummaryComponent implements OnInit {
 
+  @Input() place: Place;
+  places: Place [] = [] ;
   constructor() { }
 
   ngOnInit(): void {

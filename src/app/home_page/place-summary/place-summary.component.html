@@ -1,1 +1,4 @@
-<p>place-summary works!</p>
+<button>
+  <a *ngFor="let place of places" routerLink="/detail/{{place.id}}"></a>
+  <p>{{place.name}}</p>
+</button>

@@ -9,12 +9,15 @@ import {Place} from '../../place';
 export class PlaceService {
 
   constructor() { }
+  getPlaces(): Place[] {
+    return PLACES;
+  }
 
   getPlacesByCounty(): Place[] {
     return PLACES;
   }
   getPlaceByFind(id) {
-    return PLACES.find(x => x.id === 2);
+    return PLACES.find(x => x.id === id);
   }
 
   getListOfCounties(): string[] {
