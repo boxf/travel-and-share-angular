@@ -1,1 +1,7 @@
-<p>place-description works!</p>
+<li *ngFor="let place of places">
+<h2>{{place.name}} Details</h2>
+  <div><span>ID : </span> {{place.id}}</div>
+<div><span>County : </span> {{place.county}}</div>
+<div><span>Type : </span> {{place.type}}</div>
+<div><span>Grade : </span> {{place.grade}}</div>
+</li>

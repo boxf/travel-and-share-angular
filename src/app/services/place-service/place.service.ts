@@ -13,4 +13,7 @@ export class PlaceService {
   getPlaces(): Place[] {
     return PLACES;
   }
+  getPlaceByFind(id) {
+    return PLACES.find(x => x.id === 2);
+  }
 }

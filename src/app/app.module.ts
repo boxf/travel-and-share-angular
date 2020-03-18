@@ -36,7 +36,7 @@ import { ReviewsListComponent } from './detailplace_page/reviews-list/reviews-li
     ReviewsListComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
