@@ -13,6 +13,7 @@ export class ListOfPlacesComponent implements OnInit {
   placesSortedByType: Place[] = this.getPlacesSortedByType();
   placesSortedByCounty: Place[] = this.placeService.getPlacesByCounty();
 
+
   constructor(private placeService: PlaceService) { }
 
   ngOnInit(): void {
