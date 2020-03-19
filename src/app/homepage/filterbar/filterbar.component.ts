@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit, OnChanges, Output, SimpleChanges} from '@angular/core';
 import { PlaceService } from '../../services/place-service/place.service';
 import { Place } from '../../place';
 import { Observable } from 'rxjs';
@@ -9,7 +9,7 @@ import {PLACES} from '../../some-places';
   templateUrl: './filterbar.component.html',
   styleUrls: ['./filterbar.component.css']
 })
-export class FilterbarComponent implements OnInit {
+export class FilterbarComponent implements OnChanges {
 
   places: Place[] = PLACES ;
   counties: string[] = this.placeService.getListOfCounties();
@@ -19,13 +19,9 @@ export class FilterbarComponent implements OnInit {
   constructor(private placeService: PlaceService) {
   }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.placeService.selectCounty(this.selectedCounty);
   }
-
-  selectFilterCounty(county: string) {
-    this.placeService.selectCounty(county);
-  }
-
 
   /*private getListOfPlaces() {
     this.places = this.placeService.getPlacesByCounty().subscribe(place => {

@@ -1,6 +1,6 @@
 <label for="county">Choose a county : </label>
 <select [(ngModel)]="selectedCounty" id="county">
-  <option *ngFor="let county of counties" (click)="selectFilterCounty(county)">{{county}}</option>
+  <option *ngFor="let county of counties">{{county}}</option>
 </select>
 <label for="type">Choose type of activity : </label>
 <select id="type">

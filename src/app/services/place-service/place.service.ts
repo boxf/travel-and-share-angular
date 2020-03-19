@@ -12,7 +12,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class PlaceService {
 
   private getPlaceByCountyUrl = 'http://localhost:8080/api/place/';
-  selectedCounty = 'ALPESMARITIMES_06';
+  selectedCounty;
 
   constructor(private http: HttpClient) { }
 
