@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import { PlaceService } from '../../services/place-service/place.service';
 import { Place } from '../../place';
 import { Observable } from 'rxjs';
+import {PLACES} from '../../some-places';
 
 @Component({
   selector: 'app-filterbar',
@@ -10,43 +11,42 @@ import { Observable } from 'rxjs';
 })
 export class FilterbarComponent implements OnInit {
 
-  places: Place[];
+  places: Place[] = PLACES ;
   counties: string[] = this.placeService.getListOfCounties();
-  types: string[] = this.getListOfTypes();
+  types: string[] = this.placeService.getListOfTypes();
+  @Input() selectedCounty: string;
 
-  constructor(private placeService: PlaceService) {}
+  constructor(private placeService: PlaceService) {
+  }
 
   ngOnInit(): void {
-    /*this.getPlacesList(); TODO : check if necessary, but it seems not. Everything works fine without it */
   }
 
-  getFilteredListByCounty() {
-    this.placeService.getPlacesByCounty().
-    subscribe((place: Place[]) => this.places = place);
+  selectFilterCounty(county: string) {
+    this.placeService.selectCounty(county);
   }
 
-  getListOfTypes(): string[] {
-    const listOfTypes: string[] = [this.places[0].type];
-    for (const p of this.places) {
-      listOfTypes.push(p.type);
-    }
-    const distinctTypes = [...new Set(listOfTypes)];
-    return distinctTypes;
-  }
 
-  getListOfCounties(): string[] {
+  /*private getListOfPlaces() {
+    this.places = this.placeService.getPlacesByCounty().subscribe(place => {
+      this.places = place as Place[]
+    });
+
+  }*/
+
+  /*getListOfCounties(): string[] {
     const listOfCounties: string[] = [this.places[0].county];
     for (const p of this.places) {
       listOfCounties.push(p.county);
     }
     const distinctCounties = [...new Set(listOfCounties)];
     return distinctCounties;
-  }
-
-  /*
-  // TODO : check if necessary, but it seems not. Everything works fine without it
-  getPlacesList(): Place[] {
-    return this.placeService.getPlaces();
   }*/
+
+
+  /*// TODO : check if necessary, but it seems not. Everything works fine without it
+    getPlacesList(): Place[] {
+      return this.placeService.getPlacesTest();
+    }*/
 
 }

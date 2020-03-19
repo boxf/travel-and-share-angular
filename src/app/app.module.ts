@@ -18,6 +18,7 @@ import { ReviewComponent } from './detailplace_page/review/review.component';
 import { PlaceDescriptionComponent } from './detailplace_page/place-description/place-description.component';
 import { ReviewsListComponent } from './detailplace_page/reviews-list/reviews-list.component';
 import { FormsModule } from '@angular/forms';
+import { HomepageComponent } from './home_page/homepage.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FormsModule } from '@angular/forms';
     ReviewComponent,
     PlaceDescriptionComponent,
     ReviewsListComponent,
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
