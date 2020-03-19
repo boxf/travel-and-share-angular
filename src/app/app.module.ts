@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './home_page/navbar/navbar.component';
@@ -17,6 +18,7 @@ import { ReviewComponent } from './detailplace_page/review/review.component';
 import { PlaceDescriptionComponent } from './detailplace_page/place-description/place-description.component';
 import { ReviewsListComponent } from './detailplace_page/reviews-list/reviews-list.component';
 import {AppRoutingModule} from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,7 @@ import {AppRoutingModule} from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

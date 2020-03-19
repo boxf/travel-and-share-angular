@@ -8,13 +8,11 @@ import {Place} from '../../place';
 })
 export class PlaceService {
 
-  constructor() { }
-  getPlaces(): Place[] {
-    return PLACES;
-  }
+  constructor(private http: HttpClient) { }
 
-  getPlacesByCounty(): Place[] {
-    return PLACES;
+  getPlacesByCounty() {
+    const getPlaceByCountyUrl = 'http://localhost:8080/api/places';
+    return this.http.get<Place[]>(getPlaceByCountyUrl);
   }
   getPlaceByFind(id) {
     return PLACES.find(x => x.id === id);
