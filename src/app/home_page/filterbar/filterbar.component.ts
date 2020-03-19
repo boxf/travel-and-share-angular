@@ -20,10 +20,10 @@ export class FilterbarComponent implements OnInit {
     /*this.getPlacesList(); TODO : check if necessary, but it seems not. Everything works fine without it */
   }
 
-  // getFilteredListByCounty() {
-  //   this.placeService.getPlacesByCounty().
-  //   subscribe((place: Place[]) => this.places = place);
-  // }
+  getFilteredListByCounty() {
+    this.placeService.getPlacesByCounty().
+    subscribe((place: Place[]) => this.places = place);
+  }
 
   getListOfTypes(): string[] {
     const listOfTypes: string[] = [this.places[0].type];
