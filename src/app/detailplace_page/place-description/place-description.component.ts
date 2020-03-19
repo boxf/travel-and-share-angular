@@ -10,7 +10,6 @@ import {ActivatedRoute, Route} from '@angular/router';
 })
 export class PlaceDescriptionComponent implements OnInit {
   @Input() place: Place;
-
   constructor(
     private route: ActivatedRoute,
     private placeService: PlaceService,

@@ -19,6 +19,7 @@ import { PlaceDescriptionComponent } from './detailplace_page/place-description/
 import { ReviewsListComponent } from './detailplace_page/reviews-list/reviews-list.component';
 import {AppRoutingModule} from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { HomePageComponent } from './home_page/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { FormsModule } from '@angular/forms';
     ReviewComponent,
     PlaceDescriptionComponent,
     ReviewsListComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,

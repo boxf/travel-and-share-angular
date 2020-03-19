@@ -1,9 +1,10 @@
-<div *ngFor ="let place of places" routerLink="/placeDescription/{{place.id}}" routerLinkActive="active">
 <div class="shadow">
+  <div *ngFor ="let place of places" routerLink="/placeDescription/{{place.id}}" routerLinkActive="active">
   <p>{{place.name}}</p>
+    <p>{{place.id}}</p>
   <p>{{place.grade}}</p>
   <p>Description...... (à ajouter) Nullam in consequat lorem. Aenean ac justo diam. Donec consectetur elit ac velit lacinia condimentum. Sed non efficitur magna. Nulla vitae turpis gravida, malesuada purus sit amet, condimentum eros.</p>
-<button routerLinkActive="active">
+  <button routerLinkActive="active">
   <a>View More Detail</a>
 </button>
 </div>
