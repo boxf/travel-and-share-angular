@@ -12,7 +12,6 @@ import {Observable, of} from 'rxjs';
 export class PlaceService {
 
   private baseUrl = 'http://localhost:8080/api/';
-  private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) { }
 
@@ -20,7 +19,6 @@ export class PlaceService {
     return PLACES;
   }
   public createPlace(placeImpl: PlaceImpl) {
-   /* let placedb = JSON.stringify(placeImpl);*/
     return this.http.post<PlaceImpl>(this.baseUrl + 'places', placeImpl) ;
   }
 

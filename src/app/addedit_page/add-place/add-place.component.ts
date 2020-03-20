@@ -27,8 +27,8 @@ export class AddPlaceComponent implements OnInit {
   }
   onSubmit() {
     this.placeService.createPlace(this.place).subscribe(
-      response => {
-        console.log(response);
+      value => {
+        console.log(value);
       });
   }
 
