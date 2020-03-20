@@ -1,8 +1,9 @@
-.container-fluid{
-  display: flex;
+.card{
+  float : right;
 }
-.description{
-  border: red;
+.p{
+  float: left;
 }
-
-
+.reviewList{
+  float : bottom;
+}

@@ -9,44 +9,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./filterbar.component.css']
 })
 export class FilterbarComponent implements OnInit {
-
-  places: Place[];
-  counties: string[] = this.placeService.getListOfCounties();
-  types: string[] = this.getListOfTypes();
-
-  constructor(private placeService: PlaceService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    /*this.getPlacesList(); TODO : check if necessary, but it seems not. Everything works fine without it */
   }
-
-  getFilteredListByCounty() {
-    this.placeService.getPlacesByCounty().
-    subscribe((place: Place[]) => this.places = place);
-  }
-
-  getListOfTypes(): string[] {
-    const listOfTypes: string[] = [this.places[0].type];
-    for (const p of this.places) {
-      listOfTypes.push(p.type);
-    }
-    const distinctTypes = [...new Set(listOfTypes)];
-    return distinctTypes;
-  }
-
-  getListOfCounties(): string[] {
-    const listOfCounties: string[] = [this.places[0].county];
-    for (const p of this.places) {
-      listOfCounties.push(p.county);
-    }
-    const distinctCounties = [...new Set(listOfCounties)];
-    return distinctCounties;
-  }
-
-  /*
-  // TODO : check if necessary, but it seems not. Everything works fine without it
-  getPlacesList(): Place[] {
-    return this.placeService.getPlaces();
-  }*/
-
 }

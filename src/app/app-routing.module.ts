@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {PlaceDescriptionComponent} from './detailplace_page/place-description/place-description.component';
+import {ListOfPlacesComponent} from './home_page/list-of-places/list-of-places.component';
 import {HomePageComponent} from './home_page/home-page/home-page.component';
 
 const routes: Routes = [
