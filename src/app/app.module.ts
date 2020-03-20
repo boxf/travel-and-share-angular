@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HomePageComponent } from './home_page/home-page/home-page.component';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './home_page/navbar/navbar.component';
 import { FilterbarComponent } from './home_page/filterbar/filterbar.component';
@@ -21,6 +21,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {PlaceService} from './services/place-service/place.service';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
+import {AppRoutingModule} from './app-routing.module';
 
 const appRoutes: Routes = [
   { path: 'add', component: AddPlaceComponent},
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
     ReviewComponent,
     PlaceDescriptionComponent,
     ReviewsListComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     CommonModule,
+    AppRoutingModule
   ],
   providers: [PlaceService],
   bootstrap: [AppComponent]

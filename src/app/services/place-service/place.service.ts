@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {PlaceImpl} from '../../place-impl';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
 
 
 @Injectable({
@@ -17,11 +18,15 @@ export class PlaceService {
 
   constructor(private http: HttpClient) { }
 
-  getPlaces(): Place[] {
+  getPlacesByCounty(): Place[] {
     return PLACES;
   }
   public createPlace(placeImpl: PlaceImpl) {
    /* let placedb = JSON.stringify(placeImpl);*/
     return this.http.post<PlaceImpl>(this.baseUrl + 'places', placeImpl) ;
+  }
+
+  getPlaceById(id: number): Observable<Place> {
+    return of(PLACES.find(place => place.id === id));
   }
 }

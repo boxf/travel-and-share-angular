@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Place} from '../../place';
+import {PlaceService} from '../../services/place-service/place.service';
+import {Route} from '@angular/router';
 
 @Component({
   selector: 'app-place-summary',
@@ -6,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./place-summary.component.css']
 })
 export class PlaceSummaryComponent implements OnInit {
-
-  constructor() { }
+  @Input() place: Place;
+  places: Place[] = this.placeService.getPlacesByCounty();
+  constructor(private placeService: PlaceService) { }
 
   ngOnInit(): void {
   }
