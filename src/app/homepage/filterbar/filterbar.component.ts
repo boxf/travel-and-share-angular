@@ -9,18 +9,22 @@ import {PLACES} from '../../some-places';
   templateUrl: './filterbar.component.html',
   styleUrls: ['./filterbar.component.css']
 })
-export class FilterbarComponent implements OnChanges {
+export class FilterbarComponent implements OnInit, OnChanges {
 
   places: Place[] = PLACES ;
   counties: string[] = this.placeService.getListOfCounties();
   types: string[] = this.placeService.getListOfTypes();
   @Input() selectedCounty: string;
+  serviceCounty: string = this.placeService.selectedCounty;
 
   constructor(private placeService: PlaceService) {
   }
 
+  ngOnInit(): void {  }
+
   ngOnChanges(changes: SimpleChanges): void {
     this.placeService.selectCounty(this.selectedCounty);
+    this.placeService.updatePlacesList();
   }
 
   /*private getListOfPlaces() {

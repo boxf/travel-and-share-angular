@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnChanges, SimpleChanges} from '@angular/core';
 import { PLACES } from '../../some-places';
 import { Place } from '../../place';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,12 +12,18 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class PlaceService {
 
   private getPlaceByCountyUrl = 'http://localhost:8080/api/place/';
-  selectedCounty;
+  placesByCounty: Observable<Place[]>;
+  selectedCounty: string = 'ALPESMARITIMES_06';
 
   constructor(private http: HttpClient) { }
 
   getPlacesByCounty(): Observable<Place[]> {
-    return this.http.get<Place[]>(this.getPlaceByCountyUrl + this.selectedCounty);
+    this.placesByCounty = this.http.get<Place[]>(this.getPlaceByCountyUrl + this.selectedCounty);
+    return this.placesByCounty;
+  }
+
+  updatePlacesList(): void {
+    this.placesByCounty = this.http.get<Place[]>(this.getPlaceByCountyUrl + this.selectedCounty);
   }
 
   selectCounty(county: string) {

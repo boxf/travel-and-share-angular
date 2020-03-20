@@ -13,11 +13,16 @@ export class ListOfPlacesComponent implements OnInit {
   places: Place[];
   @Input() selectedCounty: string;
   @Input() selectedPlace: Place;
-  placesFilteredByCounty: Observable<Place[]> = this.placeService.getPlacesByCounty();
+  placesFilteredByCounty = this.placeService.getPlacesByCounty();
 
   constructor(private placeService: PlaceService) { }
 
   ngOnInit(): void {
+    this.getPlaces();
+  }
+
+  getPlaces(): void {
+    this.placeService.getPlacesByCounty().subscribe(place => this.places = place);
   }
 
   selectPlace(place: Place) {
