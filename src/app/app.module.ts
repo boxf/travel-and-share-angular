@@ -16,7 +16,16 @@ import { PhotoCarrousselComponent } from './detailplace_page/photo-carroussel/ph
 import { ReviewComponent } from './detailplace_page/review/review.component';
 import { PlaceDescriptionComponent } from './detailplace_page/place-description/place-description.component';
 import { ReviewsListComponent } from './detailplace_page/reviews-list/reviews-list.component';
-import {FormsModule} from '@angular/forms';
+import {FormBuilder, FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule, Routes} from '@angular/router';
+import {PlaceService} from './services/place-service/place.service';
+import {HttpClientModule} from '@angular/common/http';
+import {CommonModule} from '@angular/common';
+
+const appRoutes: Routes = [
+  { path: 'add', component: AddPlaceComponent},
+  { path: 'filterbar', component: FilterbarComponent}
+];
 
 @NgModule({
   declarations: [
@@ -38,9 +47,13 @@ import {FormsModule} from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
+    CommonModule,
   ],
-  providers: [],
+  providers: [PlaceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

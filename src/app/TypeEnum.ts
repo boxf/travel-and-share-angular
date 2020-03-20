@@ -1,4 +1,11 @@
 export enum TypeEnum {
-  nager = 'nager',
-  escalade = 'escalade',
+  '',
+  BEACH,
+  FOREST,
+  LOWMOUNTAIN,
+  MEDIUMMOUNTAIN,
+  HIGHMOUNTAIN,
+  MUSEUM,
+  ARTGALLERY,
+  LAKE,
 }
