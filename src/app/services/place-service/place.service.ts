@@ -3,8 +3,6 @@ import { PLACES } from '../../some-places';
 import {Place} from '../../place';
 import {HttpClient} from '@angular/common/http';
 import {PlaceImpl} from '../../place-impl';
-import {Observable} from 'rxjs';
-import {catchError} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 
 

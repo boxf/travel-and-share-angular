@@ -17,16 +17,12 @@ import { ReviewComponent } from './detailplace_page/review/review.component';
 import { PlaceDescriptionComponent } from './detailplace_page/place-description/place-description.component';
 import { ReviewsListComponent } from './detailplace_page/reviews-list/reviews-list.component';
 import {FormBuilder, FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {RouterModule, Routes} from '@angular/router';
 import {PlaceService} from './services/place-service/place.service';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {AppRoutingModule} from './app-routing.module';
 
-const appRoutes: Routes = [
-  { path: 'add', component: AddPlaceComponent},
-  { path: 'filterbar', component: FilterbarComponent}
-];
+
 
 @NgModule({
   declarations: [
@@ -51,7 +47,6 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     CommonModule,
     AppRoutingModule
