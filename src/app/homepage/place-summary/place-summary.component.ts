@@ -14,5 +14,4 @@ export class PlaceSummaryComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

@@ -9,44 +9,20 @@ import {PLACES} from '../../some-places';
   templateUrl: './filterbar.component.html',
   styleUrls: ['./filterbar.component.css']
 })
-export class FilterbarComponent implements OnInit, OnChanges {
+export class FilterbarComponent implements OnInit {
 
-  places: Place[] = PLACES ;
+  places: Place[];
   counties: string[] = this.placeService.getListOfCounties();
   types: string[] = this.placeService.getListOfTypes();
-  @Input() selectedCounty: string;
-  serviceCounty: string = this.placeService.selectedCounty;
+  selectedCounty = '';
 
   constructor(private placeService: PlaceService) {
   }
 
-  ngOnInit(): void {  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.placeService.selectCounty(this.selectedCounty);
-    this.placeService.updatePlacesList();
+  ngOnInit(): void {
   }
 
-  /*private getListOfPlaces() {
-    this.places = this.placeService.getPlacesByCounty().subscribe(place => {
-      this.places = place as Place[]
-    });
-
-  }*/
-
-  /*getListOfCounties(): string[] {
-    const listOfCounties: string[] = [this.places[0].county];
-    for (const p of this.places) {
-      listOfCounties.push(p.county);
-    }
-    const distinctCounties = [...new Set(listOfCounties)];
-    return distinctCounties;
-  }*/
-
-
-  /*// TODO : check if necessary, but it seems not. Everything works fine without it
-    getPlacesList(): Place[] {
-      return this.placeService.getPlacesTest();
-    }*/
-
+  sendSelectedCounty(): void {
+    this.placeService.sendSelectedCounty(this.selectedCounty);
+  }
 }

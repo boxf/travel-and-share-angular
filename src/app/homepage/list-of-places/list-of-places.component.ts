@@ -1,7 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { PlaceService } from '../../services/place-service/place.service';
 import { Place } from '../../place';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
+import {flatMap, map} from 'rxjs/operators';
+import {strict} from 'assert';
 
 @Component({
   selector: 'app-list-of-places',
@@ -10,22 +12,24 @@ import {Observable} from 'rxjs';
 })
 export class ListOfPlacesComponent implements OnInit {
 
-  places: Place[];
-  @Input() selectedCounty: string;
-  @Input() selectedPlace: Place;
-  placesFilteredByCounty = this.placeService.getPlacesByCounty();
+  places: Place[] = [];
+  countySubscription: Subscription;
+  placeSubscription: Subscription;
 
   constructor(private placeService: PlaceService) { }
 
   ngOnInit(): void {
-    this.getPlaces();
+    this.countySubscription = this.placeService
+      .getSelectedCounty()
+      .pipe(
+        flatMap(selectedCounty => {
+          return this.placeService.getPlacesByCounty(selectedCounty);
+        })
+      )
+      .subscribe(places => {
+        this.places = places;
+      },
+        error => console.log(error));
   }
 
-  getPlaces(): void {
-    this.placeService.getPlacesByCounty().subscribe(place => this.places = place);
-  }
-
-  selectPlace(place: Place) {
-    this.selectedPlace = place;
-  }
 }

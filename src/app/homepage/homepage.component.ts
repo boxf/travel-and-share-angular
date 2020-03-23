@@ -18,7 +18,7 @@ export class HomepageComponent implements OnInit {
   constructor(private placeService: PlaceService) { }
 
   ngOnInit(): void {
-    this.ListOfPlacesSelected = this.placeService.getPlacesByCounty();
+    // this.ListOfPlacesSelected = this.placeService.;
   }
 
 
