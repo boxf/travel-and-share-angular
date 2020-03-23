@@ -13,6 +13,7 @@ import {strict} from 'assert';
 export class ListOfPlacesComponent implements OnInit {
 
   places: Place[] = [];
+  @Input() place;
   countySubscription: Subscription;
 
   constructor(private placeService: PlaceService) { }
@@ -27,10 +28,10 @@ export class ListOfPlacesComponent implements OnInit {
       )
       .subscribe(places => {
           this.places = places;
+          this.placeService.sendPlacesFiltered(this.places);
         },
         error => console.log(error));
 
-    this.placeService.sendPlacesFiltered(this.places);
   }
 
 }
