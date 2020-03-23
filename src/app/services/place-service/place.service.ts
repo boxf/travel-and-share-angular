@@ -1,10 +1,14 @@
-import {Injectable, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { PLACES } from '../../some-places';
 import { Place } from '../../place';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable, of, Subject, Subscription} from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import {FilterbarComponent} from '../../homepage/filterbar/filterbar.component';
+import {Place} from '../../place';
+import {HttpClient} from '@angular/common/http';
+import {PlaceImpl} from '../../place-impl';
+import {Observable, of} from 'rxjs';
 
 
 @Injectable({
@@ -28,6 +32,14 @@ export class PlaceService {
 
   sendSelectedCounty(selectedCounty: string) {
     this.subject.next(selectedCounty);
+  }
+
+  public createPlace(placeImpl: PlaceImpl) {
+    return this.http.post<PlaceImpl>(this.baseUrl + 'places', placeImpl) ;
+  }
+
+  getPlaceById(id: number): Observable<Place> {
+    return of(PLACES.find(place => place.id === id));
   }
 
   getListOfCounties(): string[] {

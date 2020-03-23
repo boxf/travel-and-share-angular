@@ -1,0 +1,10 @@
+export enum TypeEnum {
+  BEACH,
+  FOREST,
+  LOWMOUNTAIN,
+  MEDIUMMOUNTAIN,
+  HIGHMOUNTAIN,
+  MUSEUM,
+  ARTGALLERY,
+  LAKE,
+}
