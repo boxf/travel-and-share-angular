@@ -6,12 +6,14 @@ import {ListOfPlacesComponent} from './home_page/list-of-places/list-of-places.c
 import {HomePageComponent} from './home_page/home-page/home-page.component';
 import {AddPlaceComponent} from './addedit_page/add-place/add-place.component';
 import {FilterbarComponent} from './home_page/filterbar/filterbar.component';
+import {RegisterUserComponent} from './loginregister_page/register-user/register-user.component';
 
 const routes: Routes = [
   { path: 'placeDescription/:id', component: PlaceDescriptionComponent},
   {path: '', component: HomePageComponent},
   { path: 'add', component: AddPlaceComponent},
-  { path: 'filterbar', component: FilterbarComponent}
+  { path: 'filterBar', component: FilterbarComponent},
+  {path: 'registerUser', component: RegisterUserComponent}
 ];
 @NgModule({
   imports: [
