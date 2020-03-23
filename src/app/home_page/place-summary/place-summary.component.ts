@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Place} from '../../place';
 import {PlaceService} from '../../services/place-service/place.service';
 import {Route} from '@angular/router';
+import {flatMap} from 'rxjs/operators';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-place-summary',
@@ -10,9 +12,8 @@ import {Route} from '@angular/router';
 })
 export class PlaceSummaryComponent implements OnInit {
   @Input() place: Place;
-  places: Place[] = this.placeService.getPlacesByCounty();
+
   constructor(private placeService: PlaceService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

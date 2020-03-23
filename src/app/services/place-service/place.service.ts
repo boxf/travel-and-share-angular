@@ -3,12 +3,9 @@ import { PLACES } from '../../some-places';
 import { Place } from '../../place';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable, of, Subject, Subscription} from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import {FilterbarComponent} from '../../homepage/filterbar/filterbar.component';
-import {Place} from '../../place';
-import {HttpClient} from '@angular/common/http';
 import {PlaceImpl} from '../../place-impl';
-import {Observable, of} from 'rxjs';
+import {CountyEnum} from '../../CountyEnum';
+import {TypeEnum} from '../../TypeEnum';
 
 
 @Injectable({
@@ -16,14 +13,14 @@ import {Observable, of} from 'rxjs';
 })
 export class PlaceService {
 
-  private getPlaceByCountyUrl = 'http://localhost:8080/api/place/';
+  private placesRESTUrl = 'http://localhost:8080/api/';
   private subject = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 
 
   getPlacesByCounty(selectedCounty: string): Observable<Place[]> {
-    return this.http.get<Place[]>(this.getPlaceByCountyUrl + selectedCounty);
+    return this.http.get<Place[]>(this.placesRESTUrl + 'place/' + selectedCounty);
   }
 
   getSelectedCounty(): Observable<string> {
@@ -34,21 +31,31 @@ export class PlaceService {
     this.subject.next(selectedCounty);
   }
 
-  public createPlace(placeImpl: PlaceImpl) {
-    return this.http.post<PlaceImpl>(this.baseUrl + 'places', placeImpl) ;
+  createPlace(placeImpl: PlaceImpl) {
+    return this.http.post<PlaceImpl>(this.placesRESTUrl + 'place', placeImpl) ;
   }
 
   getPlaceById(id: number): Observable<Place> {
     return of(PLACES.find(place => place.id === id));
   }
 
-  getListOfCounties(): string[] {
-    const counties = ['AIN_01', 'AISNE_02', 'ALLIER_03', 'ALPESDEHAUTEPROVENCE_04', 'HAUTESALPES_05', 'ALPESMARITIMES_06', 'ARDÈCHE_07'];
-    return counties;
+  getCountiesValues(): string[] {
+    const county = Object.keys(CountyEnum).filter(k => typeof CountyEnum[k as any] === 'number');
+    return county;
   }
 
-  getListOfTypes(): string[] {
-    const types = ['BEACH', 'FOREST', 'LOWMOUNTAIN', 'MEDIUMMOUNTAIN', 'HIGHMOUNTAIN', 'MUSEUM', 'ARTGALLERY', 'LAKE'];
+  getTypesValues(): string[] {
+    const types = Object.keys(TypeEnum).filter(k => typeof TypeEnum[k as any] === 'number');
+    return types;
+  }
+
+  getCountiesKeys(): string[] {
+    const county = Object.keys(CountyEnum).filter(k => typeof CountyEnum[k as any] === 'string');
+    return county;
+  }
+
+  getTypesKeys(): string[] {
+    const types = Object.keys(TypeEnum).filter(k => typeof TypeEnum[k as any] === 'string');
     return types;
   }
 }

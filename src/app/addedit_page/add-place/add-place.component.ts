@@ -21,10 +21,13 @@ export class AddPlaceComponent implements OnInit {
   selectedCountyEnum = CountyEnum;
   public countyEnumOption = [];
   placeForm: FormGroup;
+
+
   constructor(private fB: FormBuilder, private router: Router, private placeService: PlaceService) {
-    this.countyEnumOption = Object.keys(this.selectedCountyEnum).filter(k => typeof CountyEnum[k as any] === 'string');
-    this.typeEnumOption = Object.keys(this.selectedTypeEnum).filter(k => typeof TypeEnum[k as any] === 'string');
+    this.countyEnumOption = this.placeService.getCountiesKeys();
+    this.typeEnumOption = this.placeService.getTypesKeys();
   }
+
   onSubmit() {
     this.placeService.createPlace(this.place).subscribe(
       value => {
