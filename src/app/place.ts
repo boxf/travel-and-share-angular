@@ -1,3 +1,6 @@
+import {TypeEnum} from './TypeEnum';
+import {CountyEnum} from './CountyEnum';
+
 export interface Place {
   id: number;
   county: string;
@@ -5,3 +8,5 @@ export interface Place {
   name: string;
   grade: number;
 }
+
+
