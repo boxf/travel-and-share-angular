@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HomePageComponent } from './home_page/home-page/home-page.component';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './home_page/navbar/navbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { FilterbarComponent } from './home_page/filterbar/filterbar.component';
 import { ListOfPlacesComponent } from './home_page/list-of-places/list-of-places.component';
 import { MapComponent } from './home_page/map/map.component';

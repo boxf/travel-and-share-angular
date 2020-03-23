@@ -14,7 +14,6 @@ export class ListOfPlacesComponent implements OnInit {
 
   places: Place[] = [];
   countySubscription: Subscription;
-  placeSubscription: Subscription;
 
   constructor(private placeService: PlaceService) { }
 
@@ -27,9 +26,11 @@ export class ListOfPlacesComponent implements OnInit {
         })
       )
       .subscribe(places => {
-        this.places = places;
-      },
+          this.places = places;
+        },
         error => console.log(error));
+
+    this.placeService.sendPlacesFiltered(this.places);
   }
 
 }

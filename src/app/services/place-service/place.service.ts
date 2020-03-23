@@ -15,12 +15,21 @@ export class PlaceService {
 
   private placesRESTUrl = 'http://localhost:8080/api/';
   private subject = new Subject<any>();
+  private subjectPlace = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 
 
   getPlacesByCounty(selectedCounty: string): Observable<Place[]> {
     return this.http.get<Place[]>(this.placesRESTUrl + 'place/' + selectedCounty);
+  }
+
+  getPlacesFiltered(): Observable<Place[]> {
+    return this.subjectPlace.asObservable();
+  }
+
+  sendPlacesFiltered(places: Place[]) {
+    this.subjectPlace.next(places);
   }
 
   getSelectedCounty(): Observable<string> {
@@ -35,6 +44,7 @@ export class PlaceService {
     return this.http.post<PlaceImpl>(this.placesRESTUrl + 'place', placeImpl) ;
   }
 
+  // TODO : erase this method, it's not using the DB service
   getPlaceById(id: number): Observable<Place> {
     return of(PLACES.find(place => place.id === id));
   }

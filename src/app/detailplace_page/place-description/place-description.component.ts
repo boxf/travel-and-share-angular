@@ -16,11 +16,12 @@ export class PlaceDescriptionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  this.getPlace();
+    this.getPlace();
   }
 
   getPlace(): void {
     const id = +this.route.snapshot.paramMap.get('id');
+    // TODO : Receive the getPlacesFiltered() and filter it again with the id of the selected place.
     this.placeService.getPlaceById(id)
       .subscribe(place => this.place = place);
   }
