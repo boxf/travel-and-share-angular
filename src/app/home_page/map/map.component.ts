@@ -32,6 +32,13 @@ places = PLACES;
       const placeCounty = value.county;
       const placesMarkers = L.marker([placeXaxis, placeYaxis]).addTo(map).bindPopup('This is the place ' + placeName + ', located in ' + placeCounty);
     }
-  }
+    //  METHODE VIA REST CONTROLLER, RECUPERE UNE LISTE TRAITE PAR UNE METHODE GET COTE SPRING
 
+    // this.http.get('https://opendata.lillemetropole.fr/api/records/1.0/search/?dataset=bornes-podotactiles').subscribe((data: any) =>
+    // { data.records.forEach(allmarker => {
+    //     L.marker([allmarker.geometry.coordinates[1], allmarker.geometry.coordinates[0]], {icon: myIcon}).addTo(mymap).bindPopup('Boogadance');
+    //   });
+    // });
+    // const marker = L.marker([this.placexaxis, this.placeyaxis]).addTo(mymap).bindPopup('wooo');
+  }
 }
