@@ -18,6 +18,7 @@ export class MapComponent implements OnInit {
   countySubscription: Subscription;
   homeMap;
   markersGroup: LayerGroup;
+  markers: Marker[] = []
 
 
   constructor(private placeService: PlaceService) {
@@ -41,7 +42,7 @@ export class MapComponent implements OnInit {
   }
 
   addMapWithList(): void {
-    this.homeMap = L.map('map').setView([45.01, 6.1], 6);
+    this.homeMap = L.map('map').setView([47.5, 3], 5.5);
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors,  ' +
         '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -51,15 +52,15 @@ export class MapComponent implements OnInit {
       zoomOffset: -1,
       accessToken: 'pk.eyJ1IjoicmFtaWhhcm1hbmQiLCJhIjoiY2s3cDlvOWRxMDR1dTNmc3Z5a3l3NnV1cSJ9.R9t0CenlY9cz4sgmqvqFSw'
     }).addTo(this.homeMap);
+    const myscale = L.control.scale().addTo(this.homeMap);
     this.markersGroup = L.layerGroup().addTo(this.homeMap);
   }
 
   updateMarkers(): void {
-    console.log('i\'m in the add marker method !');
-    console.log('Deleting existing markers ...');
+
     this.deleteMarkers();
+    this.markers = []
     console.log('length of markers list : ' + this.markersGroup);
-    console.log('Markers have been deleted !');
     for (const place of this.places) {
       console.log('place :' + place.name);
       const placeXaxis = place.xaxis;
@@ -69,11 +70,15 @@ export class MapComponent implements OnInit {
       const currentMarker = L.marker([placeXaxis, placeYaxis]);
       currentMarker.addTo(this.markersGroup).bindPopup('This is the place ' + placeName
         + ', located in ' + placeCounty);
+      this.markers.push(currentMarker);
     }
+   var autozoom = L.featureGroup(this.markers);
+    this.homeMap.fitBounds(autozoom.getBounds());
   }
 
   deleteMarkers(): void {
     this.markersGroup.clearLayers();
+
   }
 
 }
