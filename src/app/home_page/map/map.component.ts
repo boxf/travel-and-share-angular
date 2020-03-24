@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as L from 'leaflet';
 import {Place} from '../../place';
 import {flatMap} from 'rxjs/operators';
@@ -7,13 +7,12 @@ import {PlaceService} from '../../services/place-service/place.service';
 import {Marker} from 'leaflet';
 
 
-// @ts-ignore
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit, OnChanges {
+export class MapComponent implements OnInit {
 
   places: Place[] = [];
   countySubscription: Subscription;
@@ -41,10 +40,6 @@ export class MapComponent implements OnInit, OnChanges {
         error => console.log(error));
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // this.updateMarkers();
-  }
-
   addMapWithList(): void {
     this.homeMap = L.map('map').setView([45.01, 6.1], 6);
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -62,6 +57,7 @@ export class MapComponent implements OnInit, OnChanges {
     console.log('i\'m in the add marker method !');
     console.log('Deleting existing markers ...');
     this.deleteMarkers();
+    console.log('length of markers list : ' + this.markersList.length);
     console.log('Markers have been deleted !');
     for (const place of this.places) {
       console.log('place :' + place.name);
