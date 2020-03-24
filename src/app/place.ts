@@ -1,7 +1,7 @@
 import {TypeEnum} from './TypeEnum';
 import {CountyEnum} from './CountyEnum';
 
-export interface Place {
+export class Place {
   id: number;
   county: string;
   type: string;

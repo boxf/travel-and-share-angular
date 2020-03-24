@@ -11,8 +11,10 @@ const routes: Routes = [
   { path: 'placeDescription/:id', component: PlaceDescriptionComponent},
   {path: '', component: HomePageComponent},
   { path: 'add', component: AddPlaceComponent},
-  { path: 'filterbar', component: FilterbarComponent}
+  { path: 'home', component: HomePageComponent},
+  // { path: 'filterbar', component: FilterbarComponent}
 ];
+
 @NgModule({
   imports: [
     CommonModule,
