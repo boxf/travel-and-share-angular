@@ -13,10 +13,8 @@ import {TypeEnum} from '../../TypeEnum';
 })
 export class PlaceService {
 
-  private baseUrl = 'http://localhost:8080/api/';
-  private baseUrlPicture = 'http://localhost:8080/image/';
-  message: string;
   private placesRESTUrl = 'http://localhost:8080/api/';
+  private baseUrlPicture = 'http://localhost:8080/image/';
   private subject = new Subject<any>();
   private subjectPlace = new Subject<any>();
 
@@ -40,7 +38,7 @@ export class PlaceService {
   }
 
   public createPlace(placeForm: FormData) {
-    return this.http.post<PlaceImpl>(this.baseUrl + 'place', placeForm).subscribe(value => {
+    return this.http.post<PlaceImpl>(this.placesRESTUrl + 'place', placeForm).subscribe(value => {
       console.log(value);
     });
   }
