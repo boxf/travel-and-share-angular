@@ -16,6 +16,7 @@ import {TypeEnum} from '../../TypeEnum';
 export class PlaceService {
 
   private placesRESTUrl = 'http://localhost:8080/api/';
+  private baseUrlPicture = 'http://localhost:8080/image/';
   private subject = new Subject<any>();
   private subjectPlace = new Subject<any>();
 
@@ -38,12 +39,25 @@ export class PlaceService {
     return this.subject.asObservable();
   }
 
-  sendSelectedCounty(selectedCounty: string) {
-    this.subject.next(selectedCounty);
+  public createPlace(placeForm: FormData) {
+    return this.http.post<PlaceImpl>(this.placesRESTUrl + 'place', placeForm).subscribe(value => {
+      console.log(value);
+    });
   }
 
-  createPlace(placeImpl: PlaceImpl) {
-    return this.http.post<PlaceImpl>(this.placesRESTUrl + 'place', placeImpl) ;
+  public uploadPicture(pictureForm: FormData) {
+    return this.http.post(this.baseUrlPicture + 'upload', pictureForm, {observe: 'response'}).subscribe((response) => {
+        if (response.status === 200) {
+          console.log('Image uploaded successfully');
+        } else {
+          console.log('Image not uploaded successfully');
+        }
+      }
+    );
+  }
+
+  sendSelectedCounty(selectedCounty: string) {
+    this.subject.next(selectedCounty);
   }
 
   getPlaceById(id: number): Observable<Place> {

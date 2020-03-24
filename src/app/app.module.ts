@@ -18,7 +18,7 @@ import { PlaceDescriptionComponent } from './detailplace_page/place-description/
 import { ReviewsListComponent } from './detailplace_page/reviews-list/reviews-list.component';
 import {FormBuilder, FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PlaceService} from './services/place-service/place.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HttpHeaders} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {AppRoutingModule} from './app-routing.module';
 
