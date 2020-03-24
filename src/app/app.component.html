@@ -1,13 +1,11 @@
-
 <h1>Welcome to Travel and Share !!!</h1>
-<app-filterbar class="container"></app-filterbar>
 <div class="container-fluid">
+  <app-navbar></app-navbar>
+</div>
+<div class="container">
   <div class="row">
-    <div class="col-8 shadow">
-      <h1>ICI IL Y AURA LA MAP</h1>
-    </div>
     <div class="col">
-      <app-list-of-places class="container"></app-list-of-places>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

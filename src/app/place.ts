@@ -1,11 +1,12 @@
-export interface Place {
+
+import {CountyEnum} from './CountyEnum';
+
+export class Place {
   id: number;
-  name: string;
   county: string;
-  grade: number;
   type: string;
-  pictureName: string;
-  userReview: string;
-  xaxis: number;
-  yaxis: number;
+  name: string;
+  grade: number;
 }
+
+

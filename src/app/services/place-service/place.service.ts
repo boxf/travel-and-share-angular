@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { PLACES } from '../../some-places';
 import { Place } from '../../place';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Observable, of} from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import {Observable, of, Subject, Subscription} from 'rxjs';
+import {PlaceImpl} from '../../place-impl';
+import {CountyEnum} from '../../CountyEnum';
+import {TypeEnum} from '../../TypeEnum';
 
 
 @Injectable({
@@ -11,38 +13,72 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class PlaceService {
 
-  private getPlaceByCountyUrl = 'http://localhost:8080/api/place/';
-  selectedCounty = 'ALPESMARITIMES_06';
+  private placesRESTUrl = 'http://localhost:8080/api/';
+  private baseUrlPicture = 'http://localhost:8080/image/';
+  private subject = new Subject<any>();
+  private subjectPlace = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 
-  getPlacesByCounty(): Observable<Place[]> {
-    return this.http.get<Place[]>(this.getPlaceByCountyUrl + this.selectedCounty);
+
+  getPlacesByCounty(selectedCounty: string): Observable<Place[]> {
+    return this.http.get<Place[]>(this.placesRESTUrl + 'places/' + selectedCounty);
   }
 
-  selectCounty(county: string) {
-    this.selectedCounty = county;
+  getPlacesFiltered(): Observable<Place[]> {
+    return this.subjectPlace.asObservable();
   }
 
-  getListOfCounties(): string[] {
-    const counties = ['AIN_01', 'AINE_02', 'ALLIER_03', 'ALPESDEHAUTEPROVENCE_04', 'HAUTESALPES_05', 'ALPESMARITIMES_06', 'ARDÈCHE_07'];
-    return counties;
+  sendPlacesFiltered(places: Place[]) {
+    this.subjectPlace.next(places);
   }
 
-  getListOfTypes(): string[] {
-    const types = ['BEACH', 'FOREST', 'LOWMOUNTAIN', 'MEDIUMMOUNTAIN', 'HIGHMOUNTAIN', 'MUSEUM', 'ARTGALLERY', 'LAKE'];
+  getSelectedCounty(): Observable<string> {
+    return this.subject.asObservable();
+  }
+
+  public createPlace(placeForm: FormData) {
+    return this.http.post<PlaceImpl>(this.placesRESTUrl + 'place', placeForm).subscribe(value => {
+      console.log(value);
+    });
+  }
+
+  public uploadPicture(pictureForm: FormData) {
+    return this.http.post(this.baseUrlPicture + 'upload', pictureForm, {observe: 'response'}).subscribe((response) => {
+        if (response.status === 200) {
+          console.log('Image uploaded successfully');
+        } else {
+          console.log('Image not uploaded successfully');
+        }
+      }
+    );
+  }
+
+  sendSelectedCounty(selectedCounty: string) {
+    this.subject.next(selectedCounty);
+  }
+
+  getPlaceById(id: number): Observable<Place> {
+    return this.http.get<Place>(this.placesRESTUrl + 'place/' + id);
+  }
+
+  getCountiesValues(): string[] {
+    const county = Object.keys(CountyEnum).filter(k => typeof CountyEnum[k as any] === 'number');
+    return county;
+  }
+
+  getTypesValues(): string[] {
+    const types = Object.keys(TypeEnum).filter(k => typeof TypeEnum[k as any] === 'number');
     return types;
   }
 
-  getPlacesTest(): Place[] {
-    return PLACES;
+  getCountiesKeys(): string[] {
+    const county = Object.keys(CountyEnum).filter(k => typeof CountyEnum[k as any] === 'string');
+    return county;
   }
 
-  /*private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      this.log('${operation} failed: ${error.message}');
-      return of(result as T);
-    };
-  }*/
+  getTypesKeys(): string[] {
+    const types = Object.keys(TypeEnum).filter(k => typeof TypeEnum[k as any] === 'string');
+    return types;
+  }
 }
