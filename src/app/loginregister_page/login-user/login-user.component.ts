@@ -11,5 +11,6 @@ export class LoginUserComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  onSubmitLogin() {}
 
 }
