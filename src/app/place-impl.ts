@@ -1,6 +1,6 @@
 import {Place} from './place';
-import {TypeEnum} from './TypeEnum';
 import {CountyEnum} from './CountyEnum';
+import {TypeEnum} from './TypeEnum';
 
 export class PlaceImpl implements Place {
   county: string;
@@ -10,6 +10,6 @@ export class PlaceImpl implements Place {
   pictureName: string;
   xaxis: number;
   yaxis: number;
-  userReview: string;
+  description: string;
   name: string;
 }
