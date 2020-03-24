@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, Validators} from '@angular/forms';
-import {UserImpl} from '../../user-impl';
-import {UserService} from '../../services/user-service/userService';
+import {UserService} from '../../services/user-service/user.service';
+import {Router} from '@angular/router';
+import {UserComponent} from '../../user/user.component';
 
 
 
@@ -10,36 +10,18 @@ import {UserService} from '../../services/user-service/userService';
   templateUrl: './register-user.component.html',
   styleUrls: ['./register-user.component.css']
 })
-export class RegisterUserComponent implements OnInit {
-userForm: FormGroup;
+export class RegisterUserComponent {
+user: UserComponent;
 
+  constructor(private userService: UserService, private router: Router) {
 
-  constructor(private formBuilder, private userService: UserService) { }
-
-  ngOnInit(): void {
-    this.initForm();
-  }
-  initForm() {
-    this.userForm = this.formBuilder.group(
-      {
-        lastName: ['', Validators.required],
-        firstName: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.pattern('?=.*[0-9]')]]
-      }
-    );
   }
   onSubmitForm() {
-    const formValue = this.userForm.value;
-    const newUser = new UserImpl(
-      formValue['lastName'],
-      formValue['firstName'],
-      formValue['email'],
-      formValue['password']
-    );
-    this.userService.addUser(newUser);
-
+    // this.userService.saveUserToServer(this.user).subscribe(result => this.gotoMainPage());
   }
+  // gotoMainPage() {
+  //   this.router.navigate(['']);
+  // }
 
 
 

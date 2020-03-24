@@ -1,24 +1,25 @@
 <div class="container-fluid">
   <div class = "col-sm-8 col-sm-offset-2">
     <h1>Register</h1>
-    <form method="post" enctype="multipart/form-data" [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
-      <div class="form-group">
-        <label for="lastName">Last name</label><br>
-        <input type="text" class="form-control" name="lastName" id="lastName" formControlName="lastName">
-      </div>
-      <div class="form-group">
-        <label for="firstName">First name</label><br>
-        <input type="text" class="form-control" name="firstName" id="firstName" formControlName="firstName">
-      </div>
+    <form method="post" enctype="multipart/form-data" (ngSubmit)="onSubmitForm()" #userForm="ngForm">
       <div class="form-group">
         <label for="email">Email</label><br>
-        <input type="email" class="form-control" name="email" id="email" formControlName="email">
+        <input type="email" class="form-control" name="email" id="email" ngModel required>
       </div>
       <div class="form-group">
         <label for="password">Password</label><br>
-        <input type="password" class="form-control" name="password" id="password" formControlName="password">
+        <input type="password" class="form-control" name="password" id="password" ngModel required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last name</label><br>
+        <input type="text" class="form-control" name="lastName" id="lastName" ngModel required>
+      </div>
+      <div class="form-group">
+        <label for="firstName">First name</label><br>
+        <input type="text" class="form-control" name="firstName" id="firstName" ngModel required>
       </div>
       <button class="btn btn-success" type="submit" [disabled]="userForm.invalid">Submit</button>
     </form>
   </div>
 </div>
+
