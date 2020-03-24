@@ -1,12 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Place} from '../../place';
 import {TypeEnum} from '../../TypeEnum';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {PlaceImpl} from '../../place-impl';
 import {CountyEnum} from '../../CountyEnum';
 import {PlaceService} from '../../services/place-service/place.service';
 import {Router} from '@angular/router';
-import {CommonModule} from '@angular/common';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 @Component({
   selector: 'app-add-place',
   templateUrl: './add-place.component.html',
@@ -21,15 +20,36 @@ export class AddPlaceComponent implements OnInit {
   selectedCountyEnum = CountyEnum;
   public countyEnumOption = [];
   placeForm: FormGroup;
-  constructor(private fB: FormBuilder, private router: Router, private placeService: PlaceService) {
+  selectedFile: File;
+
+
+  constructor(private http: HttpClient, private fB: FormBuilder, private router: Router, private placeService: PlaceService) {
     this.countyEnumOption = Object.keys(this.selectedCountyEnum).filter(k => typeof CountyEnum[k as any] === 'string');
     this.typeEnumOption = Object.keys(this.selectedTypeEnum).filter(k => typeof TypeEnum[k as any] === 'string');
   }
+
   onSubmit() {
-    this.placeService.createPlace(this.place).subscribe(
-      value => {
-        console.log(value);
-      });
+    const placeForm = new FormData();
+    if (this.selectedFile != null) {
+      placeForm.append('pictureFile', this.selectedFile, this.selectedFile.name);
+    }
+    placeForm.append('name', this.place.name);
+    placeForm.append('xaxis', JSON.stringify(this.place.xaxis));
+    placeForm.append('yaxis', JSON.stringify(this.place.yaxis));
+    placeForm.append('descriptio,', this.place.description);
+    placeForm.append('type', this.place.type);
+    placeForm.append('county', this.place.county);
+    this.placeService.createPlace(placeForm);
+    if (this.selectedFile != null) {
+      const uploadImageData = new FormData();
+      uploadImageData.append('MyFile', this.selectedFile, this.selectedFile.name);
+      this.placeService.uploadPicture(uploadImageData);
+      this.selectedFile = null;
+    }
+  }
+
+  onFileSelected(event) {
+    this.selectedFile = event.target.files[0];
   }
 
   ngOnInit(): void {
@@ -37,9 +57,9 @@ export class AddPlaceComponent implements OnInit {
       name: ['', Validators.required],
       xaxis: ['', Validators.required],
       yaxis: ['', Validators.required],
-      type: '',
-      county: '',
-      review: ['', Validators.required],
+      type: ['', Validators.required],
+      county: ['', Validators.required],
+      description: ['', Validators.required],
       picture: ''
     });
   }

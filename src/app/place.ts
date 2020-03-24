@@ -1,4 +1,4 @@
-import {TypeEnum} from './TypeEnum';
+
 import {CountyEnum} from './CountyEnum';
 
 export interface Place {
