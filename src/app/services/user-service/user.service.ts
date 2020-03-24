@@ -19,4 +19,8 @@ export class UserService {
   getUserByEmailFromServer(email: string): Observable<User> {
     return this.http.get<User>(this.userRESTUrl + 'users/' + email);
   }
+
+  submitUser(loginForm: FormData) {
+    return this.http.post(this.userRESTUrl + 'login', loginForm);
+  }
 }
