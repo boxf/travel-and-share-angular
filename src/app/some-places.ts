@@ -1,3 +1,4 @@
+/*
 import {PlaceImpl} from "./place-impl";
 
 export const PLACES: PlaceImpl [] = [
@@ -6,3 +7,4 @@ export const PLACES: PlaceImpl [] = [
   { id: 3, county: 'Ain_08', type: 'Mountain', name: 'Asccsn', grade: 1.8, pictureName: 'beautifulpicture.jpg', userReview: null, xaxis: 43.07, yaxis: 6.002  },
   // { id: 4, county: 'qscin_04', type: 'Climbing', name: 'qsci', grade: 4.5, pictureName: 'beautifulpicture.jpg', userReview: null, xaxis: 5.21, yaxis: 72.2  },
 ];
+*/
