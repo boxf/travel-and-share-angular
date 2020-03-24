@@ -4,7 +4,7 @@ import {Place} from '../../place';
 import {flatMap} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
 import {PlaceService} from '../../services/place-service/place.service';
-import {Marker} from 'leaflet';
+import {LayerGroup, Marker} from 'leaflet';
 
 
 @Component({
@@ -16,8 +16,8 @@ export class MapComponent implements OnInit {
 
   places: Place[] = [];
   countySubscription: Subscription;
-  homeMap: any;
-  markersList: Marker[] = [];
+  homeMap;
+  markersGroup: LayerGroup;
 
 
   constructor(private placeService: PlaceService) {
@@ -51,13 +51,14 @@ export class MapComponent implements OnInit {
       zoomOffset: -1,
       accessToken: 'pk.eyJ1IjoicmFtaWhhcm1hbmQiLCJhIjoiY2s3cDlvOWRxMDR1dTNmc3Z5a3l3NnV1cSJ9.R9t0CenlY9cz4sgmqvqFSw'
     }).addTo(this.homeMap);
+    this.markersGroup = L.layerGroup().addTo(this.homeMap);
   }
 
   updateMarkers(): void {
     console.log('i\'m in the add marker method !');
     console.log('Deleting existing markers ...');
     this.deleteMarkers();
-    console.log('length of markers list : ' + this.markersList.length);
+    console.log('length of markers list : ' + this.markersGroup);
     console.log('Markers have been deleted !');
     for (const place of this.places) {
       console.log('place :' + place.name);
@@ -66,18 +67,13 @@ export class MapComponent implements OnInit {
       const placeName = place.name;
       const placeCounty = place.county;
       const currentMarker = L.marker([placeXaxis, placeYaxis]);
-      this.markersList.push(currentMarker);
-      const placesMarkers = L.marker([placeXaxis, placeYaxis]).addTo(this.homeMap).bindPopup('This is the place ' + placeName
+      currentMarker.addTo(this.markersGroup).bindPopup('This is the place ' + placeName
         + ', located in ' + placeCounty);
     }
   }
 
   deleteMarkers(): void {
-    for (const mark of this.markersList) {
-      mark.removeFrom(this.homeMap);
-      console.log('Deleting one marker !');
-      console.log(this.homeMap);
-    }
+    this.markersGroup.clearLayers();
   }
 
 }
