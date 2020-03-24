@@ -1,4 +1,5 @@
 export enum CountyEnum {
+  '',
   AIN_01,
   AISNE_02,
   ALLIER_03,
