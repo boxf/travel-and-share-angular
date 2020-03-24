@@ -36,7 +36,7 @@ export class AddPlaceComponent implements OnInit {
     placeForm.append('name', this.place.name);
     placeForm.append('xaxis', JSON.stringify(this.place.xaxis));
     placeForm.append('yaxis', JSON.stringify(this.place.yaxis));
-    placeForm.append('descriptio,', this.place.description);
+    placeForm.append('description', this.place.description);
     placeForm.append('type', this.place.type);
     placeForm.append('county', this.place.county);
     this.placeService.createPlace(placeForm);

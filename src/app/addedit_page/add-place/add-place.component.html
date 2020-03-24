@@ -14,20 +14,20 @@
       </div>
       <div class="form-group">
         <label for="longitude">Longitude </label>
-    <br>
-    <input type="number" id="longitude" class="form-control" formControlName="xaxis" name="longitude" step="0.01" [(ngModel)]="place.xaxis">
-      <div class="alert alert-danger" *ngIf="placeForm.get('xaxis').invalid && (placeForm.get('xaxis').dirty || placeForm.get('xaxis').touched)">
-        Fill the blank
+        <br>
+        <input type="number" id="longitude" class="form-control" formControlName="xaxis" name="longitude" step="0.01" [(ngModel)]="place.xaxis">
+        <div class="alert alert-danger" *ngIf="placeForm.get('xaxis').invalid && (placeForm.get('xaxis').dirty || placeForm.get('xaxis').touched)">
+          Fill the blank
+        </div>
       </div>
-  </div>
-    <div class="form-group">
-    <label for="latitude">Latitude </label>
-    <br>
-    <input type="number" formControlName="yaxis" class="form-control" name="latitude" id="latitude" step="0.01" [(ngModel)]="place.yaxis">
-      <div class="alert alert-danger" *ngIf="placeForm.get('yaxis').invalid && (placeForm.get('yaxis').dirty || placeForm.get('yaxis').touched)">
-        Fill the blank
+      <div class="form-group">
+        <label for="latitude">Latitude </label>
+        <br>
+        <input type="number" formControlName="yaxis" class="form-control" name="latitude" id="latitude" step="0.01" [(ngModel)]="place.yaxis">
+        <div class="alert alert-danger" *ngIf="placeForm.get('yaxis').invalid && (placeForm.get('yaxis').dirty || placeForm.get('yaxis').touched)">
+          Fill the blank
+        </div>
       </div>
-    </div>
       <div class="form-group">
         <label for="type">Type </label>
         <br>
@@ -53,9 +53,9 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="review"> Description </label>
+        <label for="description"> Description </label>
         <br>
-        <textarea id="review" class="form-control" rows="5" cols="33" placeholder="Description du lieu ..."
+        <textarea id="description" class="form-control" rows="5" cols="33" placeholder="Description du lieu ..."
                   formControlName="description" [(ngModel)]="place.description" [maxlength]="maxChars">
 </textarea>
         <p>Characters Remaining: {{role.length}}/{{maxChars}}</p>
