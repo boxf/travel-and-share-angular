@@ -6,6 +6,11 @@ import {CountyEnum} from '../../CountyEnum';
 import {PlaceService} from '../../services/place-service/place.service';
 import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+
+
+/*const Desc = document.getElementById('review');
+const remainingCharsText = document.getElementById('my-textarea-remaining-chars');
+Desc.addEventListener('input', () => {console.log('got input'); });*/
 @Component({
   selector: 'app-add-place',
   templateUrl: './add-place.component.html',
@@ -16,9 +21,9 @@ export class AddPlaceComponent implements OnInit {
   maxChars = 500;
   role = '';
   selectedTypeEnum = TypeEnum;
-  public typeEnumOption = [];
+  typeEnumOption = [];
   selectedCountyEnum = CountyEnum;
-  public countyEnumOption = [];
+  countyEnumOption = [];
   placeForm: FormGroup;
   selectedFile: File;
 
@@ -36,7 +41,7 @@ export class AddPlaceComponent implements OnInit {
     placeForm.append('name', this.place.name);
     placeForm.append('xaxis', JSON.stringify(this.place.xaxis));
     placeForm.append('yaxis', JSON.stringify(this.place.yaxis));
-    placeForm.append('descriptio,', this.place.description);
+    placeForm.append('description', this.place.description);
     placeForm.append('type', this.place.type);
     placeForm.append('county', this.place.county);
     this.placeService.createPlace(placeForm);
@@ -44,8 +49,8 @@ export class AddPlaceComponent implements OnInit {
       const uploadImageData = new FormData();
       uploadImageData.append('MyFile', this.selectedFile, this.selectedFile.name);
       this.placeService.uploadPicture(uploadImageData);
-      this.selectedFile = null;
     }
+    this.selectedFile = null;
   }
 
   onFileSelected(event) {
@@ -53,6 +58,7 @@ export class AddPlaceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.place.description = '';
     this.placeForm = this.fB.group({
       name: ['', Validators.required],
       xaxis: ['', Validators.required],
