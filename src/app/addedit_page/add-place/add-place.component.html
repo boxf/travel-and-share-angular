@@ -53,13 +53,12 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="review"> Description </label>
+        <label for="description"> Description </label>
         <br>
-        <textarea id="review" class="form-control" rows="5" cols="33" placeholder="Description du lieu ..."
+        <textarea id="description" class="form-control" rows="5" cols="33" placeholder="Description du lieu ..."
                   formControlName="description" [(ngModel)]="place.description" [maxlength]="maxChars">
 </textarea>
-        <!--<div *ngIf="place.description.length == null">Characters Remaining: 0/{{maxChars}}</div>-->
-        <div>Characters Remaining: {{place.description.length}}/{{maxChars}}</div>
+        <p>Characters Remaining: {{place.description.length}}/{{maxChars}}</p>
         <div class="alert alert-danger"
              *ngIf="placeForm.get('description').invalid && (placeForm.get('description').dirty || placeForm.get('description').touched)">
           Add description
