@@ -1,5 +1,6 @@
 <div>
-  <h3>List of places</h3>
-  <app-place-summary></app-place-summary>
+  <h3>List of places : </h3>
+  <app-place-summary [place]="place" *ngFor="let place of places" routerLink="/placeDescription/{{place.id}}"
+                     routerLinkActive="active">
+  </app-place-summary>
 </div>
-

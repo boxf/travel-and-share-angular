@@ -1,7 +1,11 @@
 <h1>Welcome to Travel and Share !!!</h1>
-<!--<app-filterbar></app-filterbar>-->
 <div class="container-fluid">
+  <app-navbar></app-navbar>
+</div>
+<div class="container">
   <div class="row">
-    <app-add-place></app-add-place>
+    <div class="col">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

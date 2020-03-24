@@ -9,8 +9,19 @@ import { Observable } from 'rxjs';
   styleUrls: ['./filterbar.component.css']
 })
 export class FilterbarComponent implements OnInit {
-  constructor() {}
+
+  places: Place[];
+  counties: string[] = this.placeService.getCountiesValues();
+  types: string[] = this.placeService.getTypesValues();
+  selectedCounty = '';
+
+  constructor(private placeService: PlaceService) {
+  }
 
   ngOnInit(): void {
+  }
+
+  sendSelectedCounty(): void {
+    this.placeService.sendSelectedCounty(this.selectedCounty);
   }
 }
