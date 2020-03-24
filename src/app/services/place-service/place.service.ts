@@ -8,8 +8,10 @@ import {CountyEnum} from '../../CountyEnum';
 import {TypeEnum} from '../../TypeEnum';
 
 
+// @ts-ignore
 @Injectable({
   providedIn: 'root'
+
 })
 export class PlaceService {
 
