@@ -6,8 +6,10 @@ import {PlaceImpl} from '../../place-impl';
 import {Observable, of} from 'rxjs';
 
 
+// @ts-ignore
 @Injectable({
   providedIn: 'root'
+
 })
 export class PlaceService {
 
