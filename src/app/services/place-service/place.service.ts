@@ -21,7 +21,7 @@ export class PlaceService {
 
 
   getPlacesByCounty(selectedCounty: string): Observable<Place[]> {
-    return this.http.get<Place[]>(this.placesRESTUrl + 'place/' + selectedCounty);
+    return this.http.get<Place[]>(this.placesRESTUrl + 'places/' + selectedCounty);
   }
 
   getPlacesFiltered(): Observable<Place[]> {
@@ -44,9 +44,8 @@ export class PlaceService {
     return this.http.post<PlaceImpl>(this.placesRESTUrl + 'place', placeImpl) ;
   }
 
-  // TODO : erase this method, it's not using the DB service
   getPlaceById(id: number): Observable<Place> {
-    return of(PLACES.find(place => place.id === id));
+    return this.http.get<Place>(this.placesRESTUrl + 'place/' + id);
   }
 
   getCountiesValues(): string[] {
