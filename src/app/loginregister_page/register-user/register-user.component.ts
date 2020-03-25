@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user-service/user.service';
 import {Router} from '@angular/router';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../user';
 import {map} from 'rxjs/operators';
 
@@ -40,19 +40,12 @@ user = new User();
     });
   }
   checkEmailValidator(control: AbstractControl) {
+    console.log('In Validator');
     return this.userService.getEmailFromServer(control.value).pipe(map(res => {
-      return res ? null : { emailTaken: true};
+      return res ? { emailTaken: true} : null;
       }
     ));
   }
-  // ngOnInit(): void {
-  //   this.userForm = new FormGroup({
-  //     email: new FormControl(this.user.email, [Validators.required, Validators.email], this.checkEmailValidator),
-  //     password: new FormControl(this.user.password, Validators.required),
-  //     lastName: new FormControl (this.user.lastName, [Validators.required, Validators.minLength(2)]),
-  //     firstName: new FormControl (this.user.password, [Validators.required, Validators.minLength(2)])
-  //   });
-  // }
 
   get email() {
     return this.userForm.get('email');
