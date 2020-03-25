@@ -1,8 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {User} from '../../user';
-import {UserComponent} from '../../user/user.component';
 import {Observable} from 'rxjs';
+
 @Injectable()
 export class UserService {
   private userRESTUrl = 'http://localhost:8080/api/';
@@ -16,8 +15,12 @@ export class UserService {
     });
   }
   fetchUserFromServer() {}
-  getUserByEmailFromServer(email: string): Observable<User> {
-    return this.http.get<User>(this.userRESTUrl + 'users/' + email);
+
+  getEmailFromServer(email: string) {
+    // const response = this.http.get<boolean>(this.userRESTUrl + 'validateEmail/' + email);
+    // console.log(response);
+    // return response;
+    return this.http.get(this.userRESTUrl + 'validateEmail/' + email);
   }
 
   submitUser(loginForm: FormData) {

@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class = "col-sm-8 col-sm-offset-2">
     <h1>Login</h1>
-    <form method="post" enctype="multipart/form-data" (ngSubmit)="onSubmitLogin()" #userForm="ngForm">
+    <form method="post" enctype="multipart/form-data" (ngSubmit)="onSubmitLogin(userForm)" #userForm="ngForm">
       <div class="form-group">
         <label for="email">Email</label><br>
         <input type="email" class="form-control" name="email" id="email" ngModel required>

@@ -22,7 +22,7 @@ import {HttpClientModule, HttpHeaders} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {AppRoutingModule} from './app-routing.module';
 import {UserService} from './services/user-service/user.service';
-import { UserComponent } from './user/user.component';
+
 
 
 
@@ -43,8 +43,7 @@ import { UserComponent } from './user/user.component';
     ReviewComponent,
     PlaceDescriptionComponent,
     ReviewsListComponent,
-    HomePageComponent,
-    UserComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

@@ -44,7 +44,8 @@ export class PlaceService {
   }
 
   public uploadPicture(pictureForm: FormData) {
-    return this.http.post(this.baseUrlPicture + 'upload', pictureForm, {observe: 'response'}).subscribe((response) => {
+    return this.http.post(this.baseUrlPicture + 'upload', pictureForm, {observe: 'response'})
+      .subscribe((response) => {
         if (response.status === 200) {
           console.log('Image uploaded successfully');
         } else {

@@ -1,6 +1,6 @@
 import {Place} from './place';
 
-export interface User {
+export class User {
   id: number;
   lastName: string;
   firstName: string;
