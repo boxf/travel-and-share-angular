@@ -27,7 +27,7 @@ export class PlaceDescriptionComponent implements OnInit {
   /**
    * Used for find a place thanks to the id
    * @return a place
-   * @author Marion Pradeau & Frederic
+   * @author Marion Pradeau & Frederic Boxebeld
    */
   getPlace(): void {
     const id = +this.route.snapshot.paramMap.get('id');
