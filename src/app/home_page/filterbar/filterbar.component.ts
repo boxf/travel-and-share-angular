@@ -14,6 +14,7 @@ export class FilterbarComponent implements OnInit {
   counties: string[] = this.placeService.getCountiesValues();
   types: string[] = this.placeService.getTypesValues();
   selectedCounty = '';
+  selectedType = '';
 
   constructor(private placeService: PlaceService) {
   }
@@ -24,4 +25,8 @@ export class FilterbarComponent implements OnInit {
   sendSelectedCounty(): void {
     this.placeService.sendSelectedCounty(this.selectedCounty);
   }
+  sendSelectedType(): void {
+    this.placeService.sendSelectedType(this.selectedType);
+  }
+
 }

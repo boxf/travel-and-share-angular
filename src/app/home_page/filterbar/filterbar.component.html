@@ -8,8 +8,8 @@
     </div>
     <div class="col">
       <label for="type">Choose type of activity : </label>
-      <select id="type" class="custom-select">
-        <option *ngFor="let type of types">{{type}}</option>
+      <select [(ngModel)]="selectedType" id="type" (ngModelChange)="sendSelectedType()" class="custom-select">
+        <option *ngFor="let type of types" >{{type}}</option>
       </select>
     </div>
     <div>

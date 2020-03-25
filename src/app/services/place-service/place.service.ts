@@ -16,6 +16,7 @@ export class PlaceService {
   private placesRESTUrl = 'http://localhost:8080/api/';
   private baseUrlPicture = 'http://localhost:8080/image/';
   private subject = new Subject<any>();
+  private subjectType = new Subject<any>();
   private subjectPlace = new Subject<any>();
 
   constructor(private http: HttpClient) { }
@@ -56,6 +57,14 @@ export class PlaceService {
 
   sendSelectedCounty(selectedCounty: string) {
     this.subject.next(selectedCounty);
+  }
+
+  getSelectedType(): Observable<string> {
+    return this.subjectType.asObservable();
+  }
+
+  sendSelectedType(selectedType: string) {
+    this.subjectType.next(selectedType);
   }
 
   getPlaceById(id: number): Observable<Place> {

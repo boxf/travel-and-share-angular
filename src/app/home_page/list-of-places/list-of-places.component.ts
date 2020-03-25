@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import { PlaceService } from '../../services/place-service/place.service';
 import { Place } from '../../place';
 import {Observable, Subscription} from 'rxjs';
-import {flatMap, map} from 'rxjs/operators';
+import {filter, flatMap, map} from 'rxjs/operators';
 import {strict} from 'assert';
 
 @Component({
@@ -24,14 +24,18 @@ export class ListOfPlacesComponent implements OnInit {
       .pipe(
         flatMap(selectedCounty => {
           return this.placeService.getPlacesByCounty(selectedCounty);
-        })
+        }),
+        /*flatMap( (places: Place[]) => {
+            return places.filter(place => place.type === 'BEACH');
+          })*/
+        /*filter( (place: Place) => {
+          return place.type === 'BEACH';
+        })*/
       )
       .subscribe(places => {
           this.places = places;
-          this.placeService.sendPlacesFiltered(this.places);
         },
         error => console.log(error));
-
   }
 
 }
