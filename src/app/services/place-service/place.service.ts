@@ -18,24 +18,13 @@ export class PlaceService {
   private subject = new Subject<any>();
   private subjectType = new Subject<any>();
   private subjectPlace = new Subject<any>();
+  private subjectGrade = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 
 
   getPlacesByCounty(selectedCounty: string): Observable<Place[]> {
     return this.http.get<Place[]>(this.placesRESTUrl + 'places/' + selectedCounty);
-  }
-
-  getPlacesFiltered(): Observable<Place[]> {
-    return this.subjectPlace.asObservable();
-  }
-
-  sendPlacesFiltered(places: Place[]) {
-    this.subjectPlace.next(places);
-  }
-
-  getSelectedCounty(): Observable<string> {
-    return this.subject.asObservable();
   }
 
   public createPlace(placeForm: FormData) {
@@ -55,6 +44,10 @@ export class PlaceService {
     );
   }
 
+  getSelectedCounty(): Observable<string> {
+    return this.subject.asObservable();
+  }
+
   sendSelectedCounty(selectedCounty: string) {
     this.subject.next(selectedCounty);
   }
@@ -65,6 +58,14 @@ export class PlaceService {
 
   sendSelectedType(selectedType: string) {
     this.subjectType.next(selectedType);
+  }
+
+  getSelectedGrade(): Observable<string> {
+    return this.subjectGrade.asObservable();
+  }
+
+  sendSelectedGrade(selectedGrade: string) {
+    this.subjectGrade.next(selectedGrade);
   }
 
   getPlaceById(id: number): Observable<Place> {
@@ -90,4 +91,12 @@ export class PlaceService {
     const types = Object.keys(TypeEnum).filter(k => typeof TypeEnum[k as any] === 'string');
     return types;
   }
+
+  /*getPlacesFiltered(): Observable<Place[]> {
+    return this.subjectPlace.asObservable();
+  }
+
+  sendPlacesFiltered(places: Place[]) {
+    this.subjectPlace.next(places);
+  }*/
 }

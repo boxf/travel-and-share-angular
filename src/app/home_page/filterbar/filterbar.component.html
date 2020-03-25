@@ -14,7 +14,7 @@
     </div>
     <div>
       <label for="grade">Grade : </label>
-      <select id="grade" class="custom-select starrating">
+      <select id="grade" [(ngModel)]="selectedType" (ngModelChange)="sendSelectedGrade()" class="custom-select starrating">
         <option>&#9733; &#9734; &#9734; &#9734; &#9734; </option>
         <option>&#9733; &#9733; &#9734; &#9734; &#9734; </option>
         <option>&#9733; &#9733; &#9733; &#9734; &#9734; </option>

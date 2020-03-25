@@ -13,8 +13,9 @@ export class FilterbarComponent implements OnInit {
   places: Place[];
   counties: string[] = this.placeService.getCountiesValues();
   types: string[] = this.placeService.getTypesValues();
-  selectedCounty = '';
-  selectedType = '';
+  selectedCounty = 'BOUCHESDURHÔNE_13';
+  selectedType = 'BEACH';
+  selectedGrade = '';
 
   constructor(private placeService: PlaceService) {
   }
@@ -29,4 +30,7 @@ export class FilterbarComponent implements OnInit {
     this.placeService.sendSelectedType(this.selectedType);
   }
 
+  sendSelectedGrade() {
+    this.placeService.sendSelectedGrade(this.selectedGrade);
+  }
 }
