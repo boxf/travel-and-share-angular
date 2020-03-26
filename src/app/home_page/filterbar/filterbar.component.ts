@@ -13,24 +13,27 @@ export class FilterbarComponent implements OnInit {
   places: Place[];
   counties: string[] = this.placeService.getCountiesValues();
   types: string[] = this.placeService.getTypesValues();
-  selectedCounty = 'BOUCHESDURHÔNE_13';
+  selectedCounty = 'AIN_01';
   selectedType = 'BEACH';
-  selectedGrade = '';
+  selectedGrade = '&#9734; &#9734; &#9734; &#9734; &#9734;';
 
   constructor(private placeService: PlaceService) {
   }
 
   ngOnInit(): void {
+    this.sendSelectedCounty();
   }
 
   sendSelectedCounty(): void {
     this.placeService.sendSelectedCounty(this.selectedCounty);
-  }
-  sendSelectedType(): void {
     this.placeService.sendSelectedType(this.selectedType);
+    this.placeService.sendSelectedGrade(this.selectedGrade);
+  }
+  /*sendSelectedType(): void {
+
   }
 
   sendSelectedGrade() {
-    this.placeService.sendSelectedGrade(this.selectedGrade);
-  }
+
+  }*/
 }

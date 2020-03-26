@@ -15,10 +15,9 @@ export class PlaceService {
 
   private placesRESTUrl = 'http://localhost:8080/api/';
   private baseUrlPicture = 'http://localhost:8080/image/';
-  private subject = new Subject<any>();
-  private subjectType = new Subject<any>();
-  private subjectPlace = new Subject<any>();
-  private subjectGrade = new Subject<any>();
+  private subject = new Subject<string>();
+  private subjectType = new Subject<string>();
+  private subjectGrade = new Subject<string>();
 
   constructor(private http: HttpClient) { }
 
@@ -49,6 +48,7 @@ export class PlaceService {
   }
 
   sendSelectedCounty(selectedCounty: string) {
+    console.log('selected county :' + selectedCounty);
     this.subject.next(selectedCounty);
   }
 
@@ -57,6 +57,7 @@ export class PlaceService {
   }
 
   sendSelectedType(selectedType: string) {
+    console.log('selected type :' + selectedType);
     this.subjectType.next(selectedType);
   }
 
@@ -65,6 +66,7 @@ export class PlaceService {
   }
 
   sendSelectedGrade(selectedGrade: string) {
+    console.log('selected grade :' + selectedGrade);
     this.subjectGrade.next(selectedGrade);
   }
 
