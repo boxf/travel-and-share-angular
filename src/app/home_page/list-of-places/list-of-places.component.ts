@@ -21,7 +21,6 @@ export class ListOfPlacesComponent implements OnInit {
   ngOnInit(): void {
     const selectedCounty$ = this.placeService.getSelectedCounty();
     const selectedType$ = this.placeService.getSelectedType();
-    const selectedGrade$ = this.placeService.getSelectedGrade();
     const listOfPlacesObservable = combineLatest([selectedCounty$, selectedType$])
       .pipe(
         flatMap(([selectedCounty, selectedType]) => {
