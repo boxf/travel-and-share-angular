@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { PLACES } from '../../some-places';
 import { Place } from '../../place';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable, of, Subject, Subscription} from 'rxjs';
@@ -8,8 +7,10 @@ import {CountyEnum} from '../../CountyEnum';
 import {TypeEnum} from '../../TypeEnum';
 
 
+// @ts-ignore
 @Injectable({
   providedIn: 'root'
+
 })
 export class PlaceService {
 

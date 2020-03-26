@@ -7,6 +7,8 @@ export class Place {
   type: string;
   name: string;
   grade: number;
+  xaxis: number;
+  yaxis: number;
 }
 
 

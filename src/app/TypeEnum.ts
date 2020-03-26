@@ -1,4 +1,5 @@
 export enum TypeEnum {
+  '',
   BEACH,
   FOREST,
   LOWMOUNTAIN,

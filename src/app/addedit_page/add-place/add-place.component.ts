@@ -6,11 +6,6 @@ import {CountyEnum} from '../../CountyEnum';
 import {PlaceService} from '../../services/place-service/place.service';
 import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-
-
-/*const Desc = document.getElementById('review');
-const remainingCharsText = document.getElementById('my-textarea-remaining-chars');
-Desc.addEventListener('input', () => {console.log('got input'); });*/
 @Component({
   selector: 'app-add-place',
   templateUrl: './add-place.component.html',
@@ -21,12 +16,13 @@ export class AddPlaceComponent implements OnInit {
   maxChars = 500;
   role = '';
   selectedTypeEnum = TypeEnum;
-  typeEnumOption = [];
+  public typeEnumOption = [];
   selectedCountyEnum = CountyEnum;
-  countyEnumOption = [];
+  public countyEnumOption = [];
   placeForm: FormGroup;
   selectedFile: File;
-
+  lat = "";
+  lon = "";
 
   constructor(private http: HttpClient, private fB: FormBuilder, private router: Router, private placeService: PlaceService) {
     this.countyEnumOption = Object.keys(this.selectedCountyEnum).filter(k => typeof CountyEnum[k as any] === 'string');
@@ -55,6 +51,26 @@ export class AddPlaceComponent implements OnInit {
 
   onFileSelected(event) {
     this.selectedFile = event.target.files[0];
+  }
+
+  /**
+   * Method to receive the latitude from a other component
+   * @see map-add-place.component
+   * @param $event
+   * @author Dambrine François
+   */
+  receiveLat($event){
+    this.lat = $event;
+  }
+
+  /**
+   * Method to receive the longitude from a other component
+   * @see map-add-place.component
+   * @param $event
+   * @author Dambrine François
+   */
+  receiveLon($event){
+    this.lon = $event;
   }
 
   ngOnInit(): void {
