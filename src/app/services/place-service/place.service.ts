@@ -15,26 +15,15 @@ export class PlaceService {
 
   private placesRESTUrl = 'http://localhost:8080/api/';
   private baseUrlPicture = 'http://localhost:8080/image/';
-  private subject = new Subject<any>();
-  private subjectPlace = new Subject<any>();
+  private subject = new Subject<string>();
+  private subjectType = new Subject<string>();
+  private subjectGrade = new Subject<string>();
 
   constructor(private http: HttpClient) { }
 
 
   getPlacesByCounty(selectedCounty: string): Observable<Place[]> {
     return this.http.get<Place[]>(this.placesRESTUrl + 'places/' + selectedCounty);
-  }
-
-  getPlacesFiltered(): Observable<Place[]> {
-    return this.subjectPlace.asObservable();
-  }
-
-  sendPlacesFiltered(places: Place[]) {
-    this.subjectPlace.next(places);
-  }
-
-  getSelectedCounty(): Observable<string> {
-    return this.subject.asObservable();
   }
 
   public createPlace(placeForm: FormData) {
@@ -54,8 +43,31 @@ export class PlaceService {
     );
   }
 
+  getSelectedCounty(): Observable<string> {
+    return this.subject.asObservable();
+  }
+
   sendSelectedCounty(selectedCounty: string) {
+    console.log('selected county :' + selectedCounty);
     this.subject.next(selectedCounty);
+  }
+
+  getSelectedType(): Observable<string> {
+    return this.subjectType.asObservable();
+  }
+
+  sendSelectedType(selectedType: string) {
+    console.log('selected type :' + selectedType);
+    this.subjectType.next(selectedType);
+  }
+
+  getSelectedGrade(): Observable<string> {
+    return this.subjectGrade.asObservable();
+  }
+
+  sendSelectedGrade(selectedGrade: string) {
+    console.log('selected grade :' + selectedGrade);
+    this.subjectGrade.next(selectedGrade);
   }
 
   getPlaceById(id: number): Observable<Place> {
@@ -81,4 +93,12 @@ export class PlaceService {
     const types = Object.keys(TypeEnum).filter(k => typeof TypeEnum[k as any] === 'string');
     return types;
   }
+
+  /*getPlacesFiltered(): Observable<Place[]> {
+    return this.subjectPlace.asObservable();
+  }
+
+  sendPlacesFiltered(places: Place[]) {
+    this.subjectPlace.next(places);
+  }*/
 }

@@ -8,22 +8,12 @@
     </div>
     <div class="col">
       <label for="type">Choose type of activity : </label>
-      <select id="type" class="custom-select">
+      <select [(ngModel)]="selectedType" id="type" (ngModelChange)="sendSelectedCounty()" class="custom-select">
+        <option [value]="null" selected>All</option>
         <option *ngFor="let type of types">{{type}}</option>
       </select>
     </div>
-    <div>
-      <label for="grade">Grade : </label>
-      <select id="grade" class="custom-select starrating">
-        <option>&#9733; &#9734; &#9734; &#9734; &#9734; </option>
-        <option>&#9733; &#9733; &#9734; &#9734; &#9734; </option>
-        <option>&#9733; &#9733; &#9733; &#9734; &#9734; </option>
-        <option>&#9733; &#9733; &#9733; &#9733; &#9734; </option>
-        <option>&#9733; &#9733; &#9733; &#9733; &#9733; </option>
-      </select>
-    </div>
   </div>
-  <p>Component selected county : {{selectedCounty}}</p>
 </div>
 
 

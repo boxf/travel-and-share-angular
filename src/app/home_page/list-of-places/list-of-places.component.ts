@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { PlaceService } from '../../services/place-service/place.service';
 import { Place } from '../../place';
-import {Observable, Subscription} from 'rxjs';
-import {flatMap, map} from 'rxjs/operators';
-import {strict} from 'assert';
+import {forkJoin, Observable, of, Subscription, zip} from 'rxjs';
+import {filter, flatMap, map, mergeMap} from 'rxjs/operators';
+import {combineLatest} from 'rxjs';
 
 @Component({
   selector: 'app-list-of-places',
@@ -19,19 +19,53 @@ export class ListOfPlacesComponent implements OnInit {
   constructor(private placeService: PlaceService) { }
 
   ngOnInit(): void {
+    // Second try.... Presque...
+    const selectedCounty$ = this.placeService.getSelectedCounty();
+    const selectedType$ = this.placeService.getSelectedType();
+    const selectedGrade$ = this.placeService.getSelectedGrade();
+    const listOfPlacesObservable = combineLatest([selectedCounty$, selectedType$])
+      .pipe(
+        flatMap(([selectedCounty, selectedType]) => {
+            console.log('\'im in the flatMap, selectedCounty is :' + selectedCounty + 'selectedType is : ' + selectedType);
+            return this.placeService.getPlacesByCounty(selectedCounty)
+              .pipe(
+                map(places => {
+                  return places.filter(p => {
+                    console.log('\'im in the filter of places by type. SelectedType is : ' + selectedType);
+                    return p.type === selectedType;
+                  });
+                })
+              );
+          }
+        )
+      );
+
+    this.countySubscription = listOfPlacesObservable.subscribe(places => {
+        console.log('\'im in the subscription of places. Places [] length is : ' + places.length);
+        this.places = places;
+      },
+      error => console.log(error),
+      () => console.log('completed'),
+    );
+
+  }
+
+
+
+
+  /*// First try :
     this.countySubscription = this.placeService
       .getSelectedCounty()
       .pipe(
         flatMap(selectedCounty => {
           return this.placeService.getPlacesByCounty(selectedCounty);
+        }),
+        map(places => {
+          return places.filter(p => p.type === 'BEACH');
         })
       )
       .subscribe(places => {
           this.places = places;
-          this.placeService.sendPlacesFiltered(this.places);
         },
-        error => console.log(error));
-
-  }
-
+        error => console.log(error));*/
 }
