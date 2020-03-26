@@ -19,7 +19,6 @@ export class ListOfPlacesComponent implements OnInit {
   constructor(private placeService: PlaceService) { }
 
   ngOnInit(): void {
-    // Second try.... Presque...
     const selectedCounty$ = this.placeService.getSelectedCounty();
     const selectedType$ = this.placeService.getSelectedType();
     const selectedGrade$ = this.placeService.getSelectedGrade();
@@ -49,23 +48,4 @@ export class ListOfPlacesComponent implements OnInit {
     );
 
   }
-
-
-
-
-  /*// First try :
-    this.countySubscription = this.placeService
-      .getSelectedCounty()
-      .pipe(
-        flatMap(selectedCounty => {
-          return this.placeService.getPlacesByCounty(selectedCounty);
-        }),
-        map(places => {
-          return places.filter(p => p.type === 'BEACH');
-        })
-      )
-      .subscribe(places => {
-          this.places = places;
-        },
-        error => console.log(error));*/
 }
