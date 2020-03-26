@@ -14,16 +14,14 @@ export class UserService {
       console.log(value);
     });
   }
-  fetchUserFromServer() {}
 
   getEmailFromServer(email: string) {
-    // const response = this.http.get<boolean>(this.userRESTUrl + 'validateEmail/' + email);
-    // console.log(response);
-    // return response;
     return this.http.get(this.userRESTUrl + 'validateEmail/' + email);
   }
 
   submitUser(loginForm: FormData) {
     return this.http.post(this.userRESTUrl + 'login', loginForm);
   }
+
+
 }
