@@ -18,10 +18,4 @@ export class UserService {
   getEmailFromServer(email: string) {
     return this.http.get(this.userRESTUrl + 'validateEmail/' + email);
   }
-
-  submitUser(loginForm: FormData) {
-    return this.http.post(this.userRESTUrl + 'login', loginForm);
-  }
-
-
 }
