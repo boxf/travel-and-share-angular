@@ -2,13 +2,15 @@
 import {CountyEnum} from './CountyEnum';
 
 export class Place {
-  id: number;
   county: string;
-  type: string;
-  name: string;
   grade: number;
+  id: number;
+  type: string;
+  pictureName: string;
   xaxis: number;
   yaxis: number;
+  description: string;
+  name: string;
 }
 
 

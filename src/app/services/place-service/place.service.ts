@@ -71,8 +71,8 @@ export class PlaceService {
     this.subjectGrade.next(selectedGrade);
   }
 
-  getPlaceById(id: number): Observable<Place> {
-    return this.http.get<Place>(this.placesRESTUrl + 'place/' + id);
+  getPlaceById(id: number): Observable<PlaceImpl> {
+    return this.http.get<PlaceImpl>(this.placesRESTUrl + 'place/' + id);
   }
 
   getCountiesValues(): string[] {
