@@ -16,9 +16,9 @@ export class AddPlaceComponent implements OnInit {
   maxChars = 500;
   role = '';
   selectedTypeEnum = TypeEnum;
-  public typeEnumOption = [];
+  typeEnumOption = [];
   selectedCountyEnum = CountyEnum;
-  public countyEnumOption = [];
+  countyEnumOption = [];
   placeForm: FormGroup;
   selectedFile: File;
 
@@ -44,12 +44,36 @@ export class AddPlaceComponent implements OnInit {
       const uploadImageData = new FormData();
       uploadImageData.append('MyFile', this.selectedFile, this.selectedFile.name);
       this.placeService.uploadPicture(uploadImageData);
-      this.selectedFile = null;
     }
+    this.selectedFile = null;
   }
 
   onFileSelected(event) {
     this.selectedFile = event.target.files[0];
+  }
+
+  /**
+   * Method to receive the latitude from a other component
+   * @see map-add-place.component
+   * @param $event
+   * @author Dambrine François
+   */
+  receiveLat($event) {
+    this.place.xaxis = $event;
+  }
+
+  /**
+   * Method to receive the longitude from a other component
+   * @see map-add-place.component
+   * @param $event
+   * @author Dambrine François
+   */
+  receiveLon($event) {
+    this.place.yaxis = $event;
+  }
+  resetForm() {
+    this.placeForm.reset();
+    this.place.description = '';
   }
 
   ngOnInit(): void {

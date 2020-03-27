@@ -16,11 +16,12 @@ import { PhotoCarrousselComponent } from './detailplace_page/photo-carroussel/ph
 import { ReviewComponent } from './detailplace_page/review/review.component';
 import { PlaceDescriptionComponent } from './detailplace_page/place-description/place-description.component';
 import { ReviewsListComponent } from './detailplace_page/reviews-list/reviews-list.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PlaceService} from './services/place-service/place.service';
 import {HttpClientModule, HttpHeaders} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {AppRoutingModule} from './app-routing.module';
+import { MapAddPlaceComponent } from './addedit_page/map-add-place/map-add-place.component';
 import {UserService} from './services/user-service/user.service';
 
 
@@ -43,7 +44,8 @@ import {UserService} from './services/user-service/user.service';
     ReviewComponent,
     PlaceDescriptionComponent,
     ReviewsListComponent,
-    HomePageComponent
+    HomePageComponent,
+    MapAddPlaceComponent,
   ],
   imports: [
     BrowserModule,
