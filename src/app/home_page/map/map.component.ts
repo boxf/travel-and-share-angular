@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import * as L from 'leaflet';
 import {Place} from '../../place';
-import {flatMap} from 'rxjs/operators';
-import {Subscription} from 'rxjs';
+import {flatMap, map} from 'rxjs/operators';
+import {combineLatest, Subscription} from 'rxjs';
 import {PlaceService} from '../../services/place-service/place.service';
 import {LayerGroup, Marker} from 'leaflet';
 
@@ -18,33 +18,48 @@ export class MapComponent implements OnInit {
   countySubscription: Subscription;
   homeMap;
   markersGroup: LayerGroup;
-  markers: Marker[] = [];
-
 
   constructor(private placeService: PlaceService) {
   }
 
   /**
-   * initialization of the component. Its recover the place selected by the county, use the method to load map and markers
+   * initialization of the component. It recovers the place selected by the county and type, use the method to load map and markers
    */
-  ngOnInit() {
+  ngOnInit(): void {
     this.addMapWithList();
-    this.countySubscription = this.placeService
-      .getSelectedCounty()
+
+    const selectedCounty$ = this.placeService.getSelectedCounty();
+    const selectedType$ = this.placeService.getSelectedType();
+    const listOfPlacesObservable = combineLatest([selectedCounty$, selectedType$])
       .pipe(
-        flatMap(selectedCounty => {
-          return this.placeService.getPlacesByCounty(selectedCounty);
-        })
-      )
-      .subscribe(places => {
-          this.places = places;
-          this.updateMarkers();
-        },
-        error => console.log(error));
+        flatMap(([selectedCounty, selectedType]) => {
+            console.log('\'im in the flatMap, selectedCounty is :' + selectedCounty + 'selectedType is : ' + selectedType);
+            return this.placeService.getPlacesByCounty(selectedCounty)
+              .pipe(
+                map(places => {
+                  return places.filter(p => {
+                    console.log('\'im in the filter of places by type. SelectedType is : ' + selectedType);
+                    return p.type === selectedType;
+                  });
+                })
+              );
+          }
+        )
+      );
+
+    this.countySubscription = listOfPlacesObservable.subscribe(places => {
+        console.log('\'im in the subscription of places. Places [] length is : ' + places.length);
+        this.places = places;
+        this.updateMarkers();
+      },
+      error => console.log(error),
+      () => console.log('completed'),
+    );
+
   }
 
   /**
-   *Method to  load the map with a specific view and zoom
+   * Method to  load the map with a specific view and zoom
    * @author Dambrine François
    */
   addMapWithList(): void {
@@ -65,12 +80,11 @@ export class MapComponent implements OnInit {
   /**
    * Method to put markers on map according to the place list filtered by the county.
    * The marker take longitude and latitude of the place and he have a pop up with place's informations
-   * @author Dambrine François
+   * @author Dambrine François, Boxebeld Frédéric
    */
   updateMarkers(): void {
-
     this.deleteMarkers();
-    this.markers = []
+    /*this.markers = [];*/
     for (const place of this.places) {
       console.log('place :' + place.name);
       const placeXaxis = place.xaxis;
@@ -79,25 +93,23 @@ export class MapComponent implements OnInit {
       const placeCounty = place.county;
       const currentMarker = L.marker([placeXaxis, placeYaxis]);
       currentMarker.addTo(this.markersGroup);
-      var popup = L.popup()
+      // TODO add the popup
+      /*const popup = L.popup()
         .setLatLng([placeXaxis, placeYaxis])
         .setContent(    'This is the place ' + placeName
-           + ', located in ' + placeCounty + ' Click on the place in the list for more details' )
-        .openOn(this.homeMap);
-
-        // .bindPopup(
-        // 'This is the place ' + placeName
-        // + ', located in ' + placeCounty + ' Click on the place in the list for more details' );
-      this.markers.push(currentMarker);
+          + ', located in ' + placeCounty + ' Click on the place in the list for more details.' )
+        .openOn(this.homeMap);*/
     }
-   var autozoom = L.featureGroup(this.markers);
-    this.homeMap.fitBounds(autozoom.getBounds());
+    const autozoom = L.featureGroup(this.markersGroup.getLayers());
+    if (this.markersGroup.getLayers() != null) {
+      this.homeMap.fitBounds(autozoom.getBounds());
+    }
   }
 
   /**
    * Method for delete all the markers, use for creation of new markers
    * @see updateMarkers
-   * @author Dambrine François
+   * @author Dambrine François, Boxebeld Frédéric
    */
   deleteMarkers(): void {
     this.markersGroup.clearLayers();

@@ -13,7 +13,7 @@ import {Observable} from 'rxjs';
 })
 export class PlaceDescriptionComponent implements OnInit {
 
-  place: Place;
+  place = new PlaceImpl();
 
   constructor(
     private route: ActivatedRoute,
@@ -26,10 +26,11 @@ export class PlaceDescriptionComponent implements OnInit {
 
   getPlace(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.placeService.getPlaceById(id).subscribe(place => {
-        this.place = place;
-      },
-      error =>  console.log(error));
+    this.placeService.getPlaceById(id)
+      .subscribe(place => {
+          this.place = place;
+        },
+        error =>  console.log(error));
   }
 }
 
