@@ -16,13 +16,12 @@ export class AddPlaceComponent implements OnInit {
   maxChars = 500;
   role = '';
   selectedTypeEnum = TypeEnum;
-  public typeEnumOption = [];
+  typeEnumOption = [];
   selectedCountyEnum = CountyEnum;
-  public countyEnumOption = [];
+  countyEnumOption = [];
   placeForm: FormGroup;
   selectedFile: File;
-  lat = "";
-  lon = "";
+
 
   constructor(private http: HttpClient, private fB: FormBuilder, private router: Router, private placeService: PlaceService) {
     this.countyEnumOption = Object.keys(this.selectedCountyEnum).filter(k => typeof CountyEnum[k as any] === 'string');
@@ -59,8 +58,8 @@ export class AddPlaceComponent implements OnInit {
    * @param $event
    * @author Dambrine François
    */
-  receiveLat($event){
-    this.lat = $event;
+  receiveLat($event) {
+    this.place.xaxis = $event;
   }
 
   /**
@@ -69,8 +68,12 @@ export class AddPlaceComponent implements OnInit {
    * @param $event
    * @author Dambrine François
    */
-  receiveLon($event){
-    this.lon = $event;
+  receiveLon($event) {
+    this.place.yaxis = $event;
+  }
+  resetForm() {
+    this.placeForm.reset();
+    this.place.description = '';
   }
 
   ngOnInit(): void {

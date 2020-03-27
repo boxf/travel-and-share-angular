@@ -21,7 +21,7 @@ import {PlaceService} from './services/place-service/place.service';
 import {HttpClientModule, HttpHeaders} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {AppRoutingModule} from './app-routing.module';
-import { MapAddPlaceComponent } from './map-add-place/map-add-place.component';
+import { MapAddPlaceComponent } from './addedit_page/map-add-place/map-add-place.component';
 
 
 
