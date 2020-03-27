@@ -13,7 +13,7 @@ import {first} from 'rxjs/operators';
 export class LoginUserComponent implements OnInit {
   loading = false;
   submitted = false;
-  error: string;
+  invalidLogin = false;
 
   constructor(private userService: UserService, private router: Router,
               private authenticationService: AuthenticationService) {
@@ -28,17 +28,16 @@ export class LoginUserComponent implements OnInit {
     this.submitted = true;
     this.loading = true;
     const loginForm = new FormData();
-    loginForm.append('email', form.value.email);
+    loginForm.append('username', form.value.email);
     loginForm.append('password', form.value.password);
-    this.authenticationService.submitUser(loginForm).pipe(first()).subscribe(
+    this.authenticationService.submitUser(form.value.email, form.value.password).pipe(first()).subscribe(
       data => {
         this.router.navigate(['/home']);
+        this.invalidLogin = false;
       },
       error => {
-        this.error = error;
-        this.loading = false;
+        this.invalidLogin = true;
       }
     );
   }
-
 }

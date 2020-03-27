@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
@@ -18,13 +18,9 @@ export class AuthenticationService {
     return this.currentSubject.value;
   }
 
-  /** Store user details and jwt token in local storage to keep user logged in while his navigates pages */
-  submitUser(loginForm: FormData) {
-    return this.http.post(this.userRESTUrl + 'login', loginForm)
-      .pipe(map(user => {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.currentSubject.next(user);
-        return user;
-      }));
+  /** Store user details and jwt token in local storage to keep user logged in while he navigates pages */
+  submitUser(username, password) {
+    console.log(username + ' ' + password);
+    return this.http.post<string[]>(this.userRESTUrl + 'login', {username, password});
   }
 }
