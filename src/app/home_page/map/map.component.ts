@@ -92,16 +92,12 @@ export class MapComponent implements OnInit {
       const placeName = place.name;
       const placeCounty = place.county;
       const currentMarker = L.marker([placeXaxis, placeYaxis]);
+      currentMarker.addTo(this.markersGroup).bindPopup('This is the place ' + placeName
+        + ', located in ' + placeCounty + '.  Click on the place in the list for more details');
       currentMarker.addTo(this.markersGroup);
-      // TODO add the popup
-      /*const popup = L.popup()
-        .setLatLng([placeXaxis, placeYaxis])
-        .setContent(    'This is the place ' + placeName
-          + ', located in ' + placeCounty + ' Click on the place in the list for more details.' )
-        .openOn(this.homeMap);*/
     }
     const autozoom = L.featureGroup(this.markersGroup.getLayers());
-    if (this.markersGroup.getLayers() != null) {
+    if (this.markersGroup.getLayers().length !== 0) {
       this.homeMap.fitBounds(autozoom.getBounds());
     }
   }
