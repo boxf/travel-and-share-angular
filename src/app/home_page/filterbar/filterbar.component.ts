@@ -10,18 +10,20 @@ import { Observable } from 'rxjs';
 })
 export class FilterbarComponent implements OnInit {
 
-  places: Place[];
   counties: string[] = this.placeService.getCountiesValues();
   types: string[] = this.placeService.getTypesValues();
-  selectedCounty = '';
+  selectedCounty = 'AIN_01';
+  selectedType = 'BEACH';
 
   constructor(private placeService: PlaceService) {
   }
 
   ngOnInit(): void {
+    this.sendSelectedCounty();
   }
 
   sendSelectedCounty(): void {
     this.placeService.sendSelectedCounty(this.selectedCounty);
+    this.placeService.sendSelectedType(this.selectedType);
   }
 }
