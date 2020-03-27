@@ -1,0 +1,91 @@
+<section>
+<div class="container-fluid">
+  <br>
+  <div  id="mymap">
+    <app-map-add-place (latEvent)="receiveLat($event)" (lonEven)="receiveLon($event)"></app-map-add-place>
+  </div>
+  <div id="form">
+  <div class="row">
+    <h1> Add place  </h1>
+    <form method="post" enctype="multipart/form-data" (ngSubmit)="onSubmit(); placeForm.reset()"
+          [formGroup]="placeForm">
+      <div class="form-group">
+        <label for="name">Name </label>
+        <br>
+        <input type="text" class="form-control" name="name" id="name" formControlName="name" [(ngModel)]="place.name" >
+        <div class="alert alert-danger"
+             *ngIf="placeForm.get('name').invalid && (placeForm.get('name').dirty || placeForm.get('name').touched)">
+          Name is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="longitude">Longitude </label>
+        <br>
+        <input type="number" id="longitude" class="form-control" formControlName="yaxis" name="longitude" step="0.01" [(ngModel)]="place.yaxis" placeholder="{{lon}}">
+        <div class="alert alert-danger" *ngIf="placeForm.get('yaxis').invalid && (placeForm.get('yaxis').dirty || placeForm.get('yaxis').touched)">
+          Fill the blank
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="latitude">Latitude </label>
+        <br>
+        <input type="number" formControlName="xaxis" class="form-control" name="latitude" id="latitude" step="0.01" [(ngModel)]="place.xaxis"  placeholder="{{lat}}">
+        <div class="alert alert-danger" *ngIf="placeForm.get('xaxis').invalid && (placeForm.get('xaxis').dirty || placeForm.get('xaxis').touched)">
+          Fill the blank
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="type">Type </label>
+        <br>
+        <select name="type" id="type" formControlName="type" [(ngModel)]="place.type" class="form-control">
+          <option *ngFor="let key of typeEnumOption" [value]="selectedTypeEnum[key]"
+                  [label]="selectedTypeEnum[key]"></option>
+        </select>
+        <div class="alert alert-danger"
+             *ngIf="placeForm.get('type').invalid && (placeForm.get('type').dirty || placeForm.get('type').touched)">
+          Choose a type
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="county">County </label>
+        <br>
+        <select name="county" id="county" formControlName="county" [(ngModel)]="place.county" class="form-control">
+          <option *ngFor="let key of countyEnumOption" [value]="selectedCountyEnum[key]"
+                  [label]="selectedCountyEnum[key]"></option>
+        </select>
+        <div class="alert alert-danger"
+             *ngIf="placeForm.get('county').invalid && (placeForm.get('county').dirty || placeForm.get('county').touched)">
+          Choose a county
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description"> Description </label>
+        <br>
+        <textarea id="description" class="form-control" rows="5" cols="33" placeholder="Description du lieu ..."
+                  formControlName="description" [(ngModel)]="place.description" [maxlength]="maxChars">
+</textarea>
+        <p>Characters Remaining: {{role.length}}/{{maxChars}}</p>
+        <div class="alert alert-danger"
+             *ngIf="placeForm.get('description').invalid && (placeForm.get('description').dirty || placeForm.get('description').touched)">
+          Add description
+        </div>
+      </div>
+      <p><label for="picture"> Image </label> <input id="picture" name="file" (change)="onFileSelected($event)"
+                                                     type="file" formControlName="picture"
+                                                     [(ngModel)]="place.pictureName"></p>
+      <button class="btn btn-primary" type="submit" [disabled]="placeForm.invalid">Create</button>
+      <button class="btn btn-secondary" type="reset">Reset</button>
+
+      <!--<div class="col-md-6">
+        <input type="button" (click)="onUpload()" value="upload">
+        <div class="container row">
+          <div class="col-md-12">
+            <div *ngIf=message>{{message}}</div>
+          </div>
+        </div>
+      </div>-->
+    </form>
+  </div>
+  </div>
+</div>
+</section>

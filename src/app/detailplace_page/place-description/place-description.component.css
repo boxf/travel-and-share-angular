@@ -1,0 +1,12 @@
+.card{
+  float : right;
+}
+.p{
+  float: left;
+}
+.picture {
+  width: 700px;
+  height: 500px;
+  border: solid black;
+}
+
