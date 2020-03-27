@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
-
+/** The authentication class is responsible for the communication with Spring security. */
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
   private currentSubject: BehaviorSubject<any>;
@@ -20,13 +19,16 @@ export class AuthenticationService {
     return this.currentSubject.value;
   }
 
-  /** Store user details and jwt token in local storage to keep user logged in while his navigates pages */
+  /** submitUser is the method that sends the login form to Spring security.
+   * @param loginForm contains the email and password.
+   * @return http fetches the http response and redirect to the home page if the response is http 200 else does nothing.
+   */
   submitUser(loginForm: FormData) {
     console.log('submit');
     return this.http.post<string[]>(this.userRESTUrl + 'login', loginForm).subscribe(
       () => {
         console.log('Login successfull');
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home']).then(() => console.log('success'));
       },
       (error) => {
         console.log('You failed!! ' + error);
