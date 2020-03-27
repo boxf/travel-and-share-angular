@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +9,13 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'travel-and-share-angular';
+  constructor(private http: HttpClient, private router: Router) {
+    this.app.authenticate(undefined, undefined);
+  }
+  logout() {
+    this.http.post('logout', {}).finally(() => {
+      this.app.authenticated = false;
+      this.router.navigateByUrl('/login');
+    }).subscribe();
+  }
 
-}
