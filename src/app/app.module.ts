@@ -22,6 +22,8 @@ import {HttpClientModule, HttpHeaders} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {AppRoutingModule} from './app-routing.module';
 import { MapAddPlaceComponent } from './addedit_page/map-add-place/map-add-place.component';
+import {UserService} from './services/user-service/user.service';
+
 
 
 
@@ -53,7 +55,8 @@ import { MapAddPlaceComponent } from './addedit_page/map-add-place/map-add-place
     CommonModule,
     AppRoutingModule
   ],
-  providers: [PlaceService],
+  providers: [PlaceService,
+  UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
