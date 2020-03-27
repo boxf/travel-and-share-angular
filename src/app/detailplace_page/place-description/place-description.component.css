@@ -1,9 +1,17 @@
-.card{
-  float : right;
+.container-fluid{
+  width: 100%;
 }
-.p{
+.card {
+  box-sizing: border-box;
+  width: 50%;
   float: left;
 }
+.shadow{
+  box-sizing: border-box;
+  width: 50%;
+  float: right;
+}
 .reviewList{
-  float : bottom;
+  position: fixed;
+  flex: border-box;
 }

@@ -53,6 +53,7 @@ export class AddPlaceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.place.description = '';
     this.placeForm = this.fB.group({
       name: ['', Validators.required],
       xaxis: ['', Validators.required],
