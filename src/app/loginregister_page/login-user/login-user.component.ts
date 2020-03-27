@@ -5,6 +5,7 @@ import {NgForm} from '@angular/forms';
 import {AuthenticationService} from '../../services/authentication-service/authentication.service';
 import {first} from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-login-user',
   templateUrl: './login-user.component.html',
@@ -30,15 +31,6 @@ export class LoginUserComponent implements OnInit {
     const loginForm = new FormData();
     loginForm.append('email', form.value.email);
     loginForm.append('password', form.value.password);
-    this.authenticationService.submitUser(loginForm).pipe(first()).subscribe(
-      data => {
-        this.router.navigate(['/home']);
-      },
-      error => {
-        this.error = error;
-        this.loading = false;
-      }
-    );
+    this.authenticationService.submitUser(loginForm);
   }
-
 }
