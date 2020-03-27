@@ -1,5 +1,8 @@
-.mynav {
-  width: 100%;
+.container-fluid {
+  white-space: nowrap;
+}
+#newplace{
+  float: right;
 }
 
 

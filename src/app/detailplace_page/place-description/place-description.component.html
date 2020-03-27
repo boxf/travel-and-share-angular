@@ -1,16 +1,21 @@
-<div class="container-fluid">
+
+<div class="container">
   <div class="card" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">{{place.name}}</h5>
       <p class="card-text">County : {{place.county}}</p>
       <p class="card-text">Type : {{place.type}}</p>
       <p class="card-text">Grade : {{place.grade}}</p>
+      <p class="card-text">Latitude : {{place.xaxis}}</p>
+      <p class="card-text">Longitude : {{place.yaxis}}</p>
+
     </div>
   </div>
 </div>
-<div class="carousel">
+<div class="picture">
   <app-photo-carroussel></app-photo-carroussel>
 </div>
+<br>
 <div class="reviewList">
   <app-reviews-list></app-reviews-list>
 </div>

@@ -4,6 +4,9 @@
 .p{
   float: left;
 }
-.reviewList{
-  float : bottom;
+.picture {
+  width: 700px;
+  height: 500px;
+  border: solid black;
 }
+
