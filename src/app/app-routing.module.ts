@@ -7,15 +7,16 @@ import {AddPlaceComponent} from './addedit_page/add-place/add-place.component';
 import {FilterbarComponent} from './home_page/filterbar/filterbar.component';
 import {RegisterUserComponent} from './loginregister_page/register-user/register-user.component';
 import {LoginUserComponent} from './loginregister_page/login-user/login-user.component';
+import {AuthenticationService} from './services/authentication-service/authentication.service';
 
 const routes: Routes = [
   { path: 'placeDescription/:id', component: PlaceDescriptionComponent},
   { path: 'addUser', component: RegisterUserComponent},
   { path: 'login', component: LoginUserComponent},
-  { path: 'add', component: AddPlaceComponent},
+  { path: 'place', canActivate: [AuthenticationService], component: AddPlaceComponent},
   { path: 'filterBar', component: FilterbarComponent},
   { path: 'home', component: HomePageComponent},
-  { path: '', component: HomePageComponent},
+  { path: '', component: HomePageComponent}
 ];
 
 @NgModule({

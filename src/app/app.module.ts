@@ -22,6 +22,7 @@ import {HttpClientModule, HttpHeaders} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {AppRoutingModule} from './app-routing.module';
 import {UserService} from './services/user-service/user.service';
+import { LogoutUserComponent } from './loginregister_page/logout-user/logout-user.component';
 
 
 
@@ -43,7 +44,8 @@ import {UserService} from './services/user-service/user.service';
     ReviewComponent,
     PlaceDescriptionComponent,
     ReviewsListComponent,
-    HomePageComponent
+    HomePageComponent,
+    LogoutUserComponent
   ],
   imports: [
     BrowserModule,

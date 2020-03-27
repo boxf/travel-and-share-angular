@@ -33,4 +33,5 @@ export class LoginUserComponent implements OnInit {
     loginForm.append('password', form.value.password);
     this.authenticationService.submitUser(loginForm);
   }
+
 }

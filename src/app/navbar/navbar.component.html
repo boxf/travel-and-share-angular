@@ -5,8 +5,11 @@
     </a>
   </div>
   <div class="nav-link">
-    <a routerLink="add" class="btn btn-primary" role="button">Share a new place !</a>
+    <a routerLink="place" class="btn btn-primary" role="button">Share a new place !</a>
     <a routerLink="addUser" class="btn btn-secondary" role="button">Register</a>
     <a routerLink="login" class="btn btn-success" role="button">Login</a>
+    <button class="btn btn-danger" routerLink="logout" routerLinkActive="active">
+      <a (click)="Logout()">Logout</a>
+    </button>
   </div>
 </nav>
