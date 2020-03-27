@@ -1,7 +1,10 @@
+<div  id="mymap">
+  <app-map-add-place (latEvent)="receiveLat($event)" (lonEven)="receiveLon($event)"></app-map-add-place>
+</div>
 <div class="container-fluid">
   <div class="row">
     <h1> Add place </h1>
-    <form method="post" enctype="multipart/form-data" (ngSubmit)="onSubmit(); placeForm.reset()"
+    <form method="post" enctype="multipart/form-data" (ngSubmit)="onSubmit(); resetForm()"
           [formGroup]="placeForm">
       <div class="form-group">
         <label for="name">Name </label>
@@ -15,16 +18,16 @@
       <div class="form-group">
         <label for="longitude">Longitude </label>
         <br>
-        <input type="number" id="longitude" class="form-control" formControlName="xaxis" name="longitude" step="0.01" [(ngModel)]="place.xaxis">
-        <div class="alert alert-danger" *ngIf="placeForm.get('xaxis').invalid && (placeForm.get('xaxis').dirty || placeForm.get('xaxis').touched)">
+        <input type="number" id="longitude" class="form-control" formControlName="yaxis" name="longitude" step="0.01" [(ngModel)]="place.yaxis">
+        <div class="alert alert-danger" *ngIf="placeForm.get('yaxis').invalid && (placeForm.get('yaxis').dirty || placeForm.get('yaxis').touched)">
           Fill the blank
         </div>
       </div>
       <div class="form-group">
         <label for="latitude">Latitude </label>
         <br>
-        <input type="number" formControlName="yaxis" class="form-control" name="latitude" id="latitude" step="0.01" [(ngModel)]="place.yaxis">
-        <div class="alert alert-danger" *ngIf="placeForm.get('yaxis').invalid && (placeForm.get('yaxis').dirty || placeForm.get('yaxis').touched)">
+        <input type="number" formControlName="xaxis" class="form-control" name="latitude" id="latitude" step="0.01" [(ngModel)]="place.xaxis" >
+        <div class="alert alert-danger" *ngIf="placeForm.get('xaxis').invalid && (placeForm.get('xaxis').dirty || placeForm.get('xaxis').touched)">
           Fill the blank
         </div>
       </div>
@@ -67,8 +70,8 @@
       <p><label for="picture"> Image </label> <input id="picture" name="file" (change)="onFileSelected($event)"
                                                      type="file" formControlName="picture"
                                                      [(ngModel)]="place.pictureName"></p>
-      <button class="btn btn-primary" type="submit" [disabled]="placeForm.invalid">Create</button>
-      <button class="btn btn-secondary" type="reset">Reset</button>
+        <button class="btn btn-primary" type="submit" [disabled]="placeForm.invalid" >Create</button>
+      <button class="btn btn-secondary" (click)="resetForm()" type="button">Reset</button>
       <!--<div class="col-md-6">
         <input type="button" (click)="onUpload()" value="upload">
         <div class="container row">
