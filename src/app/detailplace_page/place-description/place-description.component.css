@@ -1,0 +1,17 @@
+.container-fluid{
+  width: 100%;
+}
+.card {
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+}
+.shadow{
+  box-sizing: border-box;
+  width: 50%;
+  float: right;
+}
+.reviewList{
+  position: fixed;
+  flex: border-box;
+}

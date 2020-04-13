@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <label for="county">Choose a county : </label>
+      <select [(ngModel)]="selectedCounty" id="county" (ngModelChange)="sendSelectedCounty()" class="custom-select">
+        <option *ngFor="let county of counties">{{county}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <label for="type">Choose type of activity : </label>
+      <select [(ngModel)]="selectedType" id="type" (ngModelChange)="sendSelectedCounty()" class="custom-select">
+        <option [value]="null" selected>All</option>
+        <option *ngFor="let type of types">{{type}}</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
